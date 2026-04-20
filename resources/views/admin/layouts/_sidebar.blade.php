@@ -16,10 +16,10 @@
 </style>
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
-        <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            <a href="{{ route('admin.dashboard') }}" class="logo">
+                <img src="{{ asset('admin2/assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
+                    height="20" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -33,18 +33,19 @@
                 <i class="gg-more-vertical-alt"></i>
             </button>
         </div>
-        <!-- End Logo Header -->
     </div>
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <li class="nav-item {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
-                    <a href="{{ route('admin/pages/dashboard') }}">
-                        <i class="fas fa-home"></i>
+
+                <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fas fa-chart-line"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
+
+                <li class="nav-item {{ Request::is('admin/home*', 'admin/service*') ? 'active' : '' }}">
                     <a data-bs-toggle="collapse" href="#tables">
                         <i class="fas fa-edit"></i>
                         <p>Content Management</p>
@@ -53,53 +54,62 @@
                     <div class="collapse {{ Request::is('admin/home*', 'admin/service*') ? 'show' : '' }}"
                         id="tables">
                         <ul class="nav nav-collapse">
-                            <li class="nav-item {{ Request::is('admin/home*') ? 'active' : '' }}">
-                                <a href="{{ route('home') }}">
-                                    <i class="nav-icon fas fa-home"></i>
-                                    <span>Home</span>
+                            <li class="{{ Request::is('admin/home*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.home.index') }}">
+                                    <span class="sub-item">Home</span>
                                 </a>
                             </li>
-
-                            <li class="nav-item {{ Request::is('admin/service*') ? 'active' : '' }}">
-                                <a href="{{ route('service') }}">
-                                    <i class="nav-icon fas fa-headset"></i>
-                                    <span>Service</span>
+                            <li class="{{ Request::is('admin/service*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.service') }}">
+                                    <span class="sub-item">Service</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item {{ Request::is('admin/books') ? 'active' : '' }}">
-                    <a href="{{ route('books') }}">
+
+                <li class="nav-item {{ Request::is('admin/books*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.books') }}">
                         <i class="fas fa-book"></i>
                         <p>Books</p>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('admin/categories') ? 'active' : '' }}">
-                    <a href="{{ route('categories') }}">
+
+                <li class="nav-item {{ Request::is('admin/categories*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.categories') }}">
                         <i class="fas fa-th-large"></i>
                         <p>Categories</p>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('admin/contact') ? 'active' : '' }}">
-                    <a href="{{ route('contact') }}">
-                        <i class="fas fa-inbox"></i>
+
+                <li class="nav-item {{ Request::is('admin/contact*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.contact') }}">
+                        <i class="fas fa-envelope"></i>
                         <p>Contact</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('admin/orders') ? 'active' : '' }}">
-                    <a href="{{ route('orders') }}">
+                <li class="nav-item {{ Request::is('admin/orders*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders') }}">
                         <i class="fas fa-receipt"></i>
                         <p>Orders</p>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('admin/sitestatistic') ? 'active' : '' }}">
-                    <a href="{{ route('sitestatistic') }}">
+
+                <li class="nav-item {{ Request::is('admin/statistics*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.statistics') }}">
                         <i class="fas fa-chart-bar"></i>
                         <p>Site Statistic</p>
                     </a>
                 </li>
+
+                <li class="nav-item {{ Request::is('admin/testimoni*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.testimoni') }}">
+                        <i class="fas fa-comments"></i>
+                        <p>Testimoni</p>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

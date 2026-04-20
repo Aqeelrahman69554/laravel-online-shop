@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\book;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OrdersController extends Controller
+class HomeController extends Controller
 {
     //
 }

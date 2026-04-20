@@ -4,11 +4,8 @@
 <div class="container-fluid p-4">
     <div class="card shadow-sm">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <div>
-                <h4 class="card-title">Kelola Statistik Frontend</h4>
-                <p class="text-muted small mb-0">Kelola data counter yang tampil di halaman utama.</p>
-            </div>
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#statisticModal" onclick="prepareModal('tambah')">
+            <h4 class="card-title">Statistik Situs</h4>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#statModal" onclick="prepareStatModal('tambah')">
                 <i class="fas fa-plus"></i> Tambah Statistik
             </button>
         </div>
@@ -17,28 +14,35 @@
                 <table class="table table-hover align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th class="text-center" style="width: 80px;">Icon</th>
-                            <th>Judul / Penjelasan</th>
-                            <th>Jumlah (Angka)</th>
+                            <th>No</th>
+                            <th>Ikon</th>
+                            <th>Judul</th>
+                            <th>Nilai (Value)</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- Contoh Baris Data --}}
+                        @foreach($statistics as $key => $item)
                         <tr>
-                            <td class="text-center text-warning"><i class="fas fa-users fa-2x"></i></td>
-                            <td><span class="fw-bold text-success text-uppercase">Satisfied Customers</span></td>
-                            <td><h5 class="mb-0">1963</h5></td>
+                            <td>{{ $key + 1 }}</td>
+                            <td><i class="{{ $item->icon }} fa-2x text-primary"></i></td>
+                            <td><strong>{{ $item->title }}</strong></td>
+                            <td><span class="badge bg-secondary">{{ $item->value }}</span></td>
                             <td class="text-center">
-                                <button class="btn btn-warning btn-sm text-white"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#statisticModal"
-                                        onclick="prepareModal('edit', 'Satisfied Customers', '1963', 'fa-users')">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-warning btn-sm text-white"
+                                        onclick="prepareStatModal('edit', '{{ $item->id }}', '{{ $item->icon }}', '{{ $item->title }}', '{{ $item->value }}')"
+                                        data-bs-toggle="modal" data-bs-target="#statModal">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <form action="{{ route('admin.statistics.delete', $item->id) }}" method="POST" onsubmit="return confirm('Hapus statistik ini?')">
+                                        @csrf @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -46,32 +50,33 @@
     </div>
 </div>
 
-<div class="modal fade" id="statisticModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="statModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Tambah Statistik</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="#" method="POST">
+            <form id="statForm" method="POST">
+                @csrf
+                <div id="statMethod"></div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="statTitle">Tambah Statistik</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Icon (FontAwesome Class)</label>
-                        <input type="text" class="form-control" id="form_icon" name="icon" placeholder="Contoh: fa-users">
-                        <div class="form-text">Cari ikon di <a href="https://fontawesome.com/" target="_blank">fontawsome</a></div>
+                        <label class="form-label">Ikon (FontAwesome Class)</label>
+                        <input type="text" class="form-control" name="icon" id="in_icon" placeholder="fa-solid fa-star" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Judul / Penjelasan</label>
-                        <input type="text" class="form-control" id="form_title" name="title" required>
+                        <label class="form-label">Judul Statistik</label>
+                        <input type="text" class="form-control" name="title" id="in_title" placeholder="Contoh: Koleksi Buku" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Jumlah (Angka/Persen)</label>
-                        <input type="text" class="form-control" id="form_value" name="value" required>
+                        <label class="form-label">Nilai / Angka</label>
+                        <input type="text" class="form-control" name="value" id="in_value" placeholder="Contoh: 1.000+" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary" id="btnSubmit">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
@@ -79,24 +84,24 @@
 </div>
 
 <script>
-    function prepareModal(mode, title = '', value = '', icon = '') {
-        const modalTitle = document.getElementById('modalTitle');
-        const btnSubmit = document.getElementById('btnSubmit');
+    function prepareStatModal(mode, id='', icon='', title='', value='') {
+        const form = document.getElementById('statForm');
+        const method = document.getElementById('statMethod');
+        const modalTitle = document.getElementById('statTitle');
 
         if(mode === 'tambah') {
             modalTitle.innerText = 'Tambah Statistik Baru';
-            btnSubmit.innerText = 'Tambah Data';
-            // Kosongkan form
-            document.getElementById('form_title').value = '';
-            document.getElementById('form_value').value = '';
-            document.getElementById('form_icon').value = '';
+            form.action = "{{ route('admin.statistics.store') }}";
+            method.innerHTML = '';
+            form.reset();
         } else {
             modalTitle.innerText = 'Edit Statistik';
-            btnSubmit.innerText = 'Simpan Perubahan';
-            // Isi form dengan data yang ada
-            document.getElementById('form_title').value = title;
-            document.getElementById('form_value').value = value;
-            document.getElementById('form_icon').value = icon;
+            form.action = "/admin/statistics/update/" + id;
+            method.innerHTML = '@method("PUT")';
+
+            document.getElementById('in_icon').value = icon;
+            document.getElementById('in_title').value = title;
+            document.getElementById('in_value').value = value;
         }
     }
 </script>
