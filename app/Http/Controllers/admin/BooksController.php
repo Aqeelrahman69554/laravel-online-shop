@@ -10,10 +10,22 @@ use Illuminate\Support\Facades\Storage;
 
 class BooksController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::with('category')->get();
-        $categories = Categories::all(); // Untuk dropdown di modal
+        // Mengambil ID kategori dari request (jika ada)
+        $categoryId = $request->input('category_id');
+
+        // Query awal dengan eager loading kategori
+        $query = Book::with('category');
+
+        // Jika user memilih kategori tertentu, filter datanya
+        if ($categoryId) {
+            $query->where('category_id', $categoryId);
+        }
+
+        $books = $query->get();
+        $categories = Categories::all();
+
         return view('admin.pages.books', compact('books', 'categories'));
     }
 

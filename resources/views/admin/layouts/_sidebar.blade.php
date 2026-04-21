@@ -18,8 +18,9 @@
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
             <a href="{{ route('admin.dashboard') }}" class="logo">
-                <img src="{{ asset('admin2/assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
-                    height="20" />
+                <img src="{{ asset('admin2/assets/img/kaiadmin/logoaqeel.png') }}" alt="navbar brand" class="navbar-brand"
+                    style="height: 50px !important; width: auto; object-fit: contain;" />
+                    <span class="text-white fw-bold ms-2" style="font-size: 1.2rem;">TOBUKEL</span>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">

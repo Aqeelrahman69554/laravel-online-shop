@@ -11,6 +11,21 @@
                 </button>
             </div>
             <div class="card-body">
+                <div class="mb-4">
+                    <div class="btn-group flex-wrap" role="group" aria-label="Filter Kategori">
+                        <a href="{{ route('admin.books') }}"
+                            class="btn {{ !request('category_id') ? 'btn-primary' : 'btn-outline-primary' }}">
+                            Semua
+                        </a>
+
+                        @foreach ($categories as $cat)
+                            <a href="{{ route('admin.books', ['category_id' => $cat->id]) }}"
+                                class="btn {{ request('category_id') == $cat->id ? 'btn-primary' : 'btn-outline-primary' }}">
+                                {{ $cat->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle">
                         <thead>
