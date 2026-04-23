@@ -4,7 +4,7 @@
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link" href="http://www.themekita.com">
-                        ThemeKita
+                        Tobukel
                     </a>
                 </li>
                 <li class="nav-item">
@@ -16,12 +16,12 @@
             </ul>
         </nav>
         <div class="copyright">
-            2024, made with <i class="fa fa-heart heart text-danger"></i> by
-            <a href="http://www.themekita.com">ThemeKita</a>
+            Toko Buku Kesayangan Kita<i class="fa fa-heart heart text-danger"></i>
+            <a href="http://www.themekita.com"></a>
         </div>
         <div>
             Distributed by
-            <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+            <a target="_blank" href="https://themewagon.com/">Tobukel</a>.
         </div>
     </div>
 </footer>
