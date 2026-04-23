@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Users;
+use App\Models\User;
 use Carbon\Carbon;
 
 class OrdersSeeder extends Seeder
@@ -15,7 +15,7 @@ class OrdersSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = Users::first();
+        $user = User::first();
         $orders = [
             [
                 'user_id' => $user ? $user->id : 1,

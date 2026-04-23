@@ -18,11 +18,15 @@ class UserSeeder extends Seeder
             'name'     => 'Admin Perpustakaan',
             'email'    => 'admin@gmail.com',
             'password' => Hash::make('password123'),
+            'role'     => 'admin',
+            'email_verified_at' => now(),
         ]);
         User::create([
             'name'     => 'Budi Mahasiswa',
             'email'    => 'budi@gmail.com',
             'password' => Hash::make('password123'),
+            'role'     => 'pengunjung',
+            'email_verified_at' => now(),
         ]);
     }
 }
