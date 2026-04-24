@@ -21,7 +21,9 @@ use App\Http\Controllers\Auth\LoginController;
 // });
 
 //Route Login
-Route::get('login', [LoginController::class, 'showLogin'])->name('login');
+Route::get('login', function () {
+    return view('auth.login'); // Ini akan memanggil resources/views/login.blade.php
+})->name('login');
 Route::post('login', [LoginController::class, 'authenticate'])->name('login.post');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
