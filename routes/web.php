@@ -93,3 +93,6 @@ Route::middleware('auth')->group(function () {
 
 
 // Pengunjung
+Route::get('/tobukel', function(){
+    return view('shop.layouts.master');
+});
