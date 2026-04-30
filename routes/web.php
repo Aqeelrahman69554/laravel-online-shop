@@ -13,6 +13,9 @@ use App\Http\Controllers\Admin\TestimoniController;
 
 use App\Http\Controllers\Auth\LoginController;
 
+// URL SHOP
+use App\Http\Controllers\Shop\HomeController as ShopHomeControler;
+
 
 // --- Bagian Admin Proyek Kamu ---
 
@@ -20,10 +23,11 @@ use App\Http\Controllers\Auth\LoginController;
 //     return view('admin.layouts.master');
 // });
 
-//Route Login
+// --- AUTENTIKASI ---
 Route::get('login', function () {
-    return view('auth.login'); // Ini akan memanggil resources/views/login.blade.php
+    return view('auth.login');
 })->name('login');
+
 Route::post('login', [LoginController::class, 'authenticate'])->name('login.post');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -92,15 +96,11 @@ Route::middleware('auth')->group(function () {
 
 
 
-// Pengunjung
-Route::get('/tobukel', function(){
-    return view('shop.pages.home');
-})->name('home');
-
+// --- PENGUNJUNG (Public) ---
+Route::get('/', [ShopHomeControler::class, 'index'])->name('home');
 Route::get('/shopdetail', function () {
     return view('shop.pages.shopdetail');
 })->name('shopdetail');
-
-Route::get('tobukel/shop', function(){
+Route::get('tobukel/shop', function () {
     return view('shop.pages.shop');
 })->name('shop');

@@ -67,7 +67,7 @@
                 <div id="methodPlaceholder"></div> <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Judul (Title)</label>
-                        <input type="text" class="form-control" name="home_title" id="input_title" required>
+                        <input type="text" class="form-control" name="home_title" id="input_title">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Gambar (Image)</label>
