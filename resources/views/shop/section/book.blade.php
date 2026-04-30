@@ -3,36 +3,31 @@
     <div class="container py-5">
         <div class="tab-class text-center">
             <div class="row g-4">
-                <div class="col-lg-4 text-start">
-                    <h1>Our Organic Products</h1>
+                <div class="col-lg-6 text-start">
+                    <h1>Koleksi Buku Terpopuler</h1>
                 </div>
-                <div class="col-lg-8 text-end">
+                <div class="col-lg-6 text-end">
                     <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                        {{-- ALL --}}
                         <li class="nav-item">
-                            <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
-                                <span class="text-dark" style="width: 130px;">All Products</span>
+                            <a href="{{ url('/tobukel') }}"
+                                class="d-flex m-2 py-2 rounded-pill {{ request('category') == null ? 'bg-primary text-white' : 'bg-light text-dark' }}">
+                                <span style="width: 130px;">All</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                <span class="text-dark" style="width: 130px;">Vegetables</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                <span class="text-dark" style="width: 130px;">Fruits</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                <span class="text-dark" style="width: 130px;">Bread</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                <span class="text-dark" style="width: 130px;">Meat</span>
-                            </a>
-                        </li>
+
+                        {{-- LOOP CATEGORY --}}
+                        @foreach ($categories as $cat)
+                            <li class="nav-item">
+                                <a href="{{ url('/tobukel?category=' . $cat->id) }}"
+                                    class="d-flex m-2 py-2 rounded-pill {{ request('category') == $cat->id ? 'bg-primary text-white' : 'bg-light text-dark' }}">
+                                    <span style="width: 130px;">
+                                        {{ $cat->name }}
+                                    </span>
+                                </a>
+                            </li>
+                        @endforeach
+
                     </ul>
                 </div>
             </div>
@@ -41,30 +36,37 @@
                     <div class="row g-4">
                         <div class="col-lg-12">
                             <div class="row g-4">
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{ asset('shop/img/novel_3.jpg') }}"
-                                                class="img-fluid book-img rounded-top" alt="">
+                                @foreach ($books as $item)
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
+
+                                        {{-- box book --}}
+                                        <div class="rounded position-relative fruite-item h-100">
+                                            <div class="fruite-img">
+                                                <img src="{{ asset($item->books_images) }}"
+                                                    class="img-fluid book-img rounded-top" alt="">
+                                            </div>
+                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute">
+                                                Novel
+                                            </div>
+                                            <div
+                                                class="p-4 border border-secondary border-top-0 rounded-bottom d-flex flex-column h-100">
+                                                <a href="{{ route('shopdetail', $item->id) }}">
+                                                    <h4>{{ $item->books_name }}</h4>
+                                                    <p class="small">{{ Str::limit($item->books_desc, 80) }}</p>
+                                                    <div class="mt-auto d-flex justify-content-between ">
+                                                        <p class="text-dark fs-5 fw-bold mb-0">Rp
+                                                            {{ number_format($item->price, 0, ',', '.') }}</p>
+                                                        <a href="#"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+                                                            cart</a>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute">
-                                            Novel
-                                        </div>
-                                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                            <a href="{{ route('shopdetail') }}">
-                                                <h4>Laskar Pelangi</h4>
-                                                <p>Novel Inspiratif karya Andrea Hirata</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">Rp 85.000</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </a>
-                                        </div>
+
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

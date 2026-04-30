@@ -98,9 +98,11 @@ Route::middleware('auth')->group(function () {
 
 // --- PENGUNJUNG (Public) ---
 Route::get('/', [ShopHomeControler::class, 'index'])->name('home');
-Route::get('/shopdetail', function () {
-    return view('shop.pages.shopdetail');
-})->name('shopdetail');
+
+
+Route::get('/shopdetail/{id}',[ShopHomeControler::class, 'detail'])->name('shopdetail');
+
+
 Route::get('tobukel/shop', function () {
     return view('shop.pages.shop');
 })->name('shop');

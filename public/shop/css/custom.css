@@ -3,23 +3,22 @@
 ================================= */
 
 :root {
-    --bs-primary: #8B5E3C;   /* coklat utama (lebih soft) */
-    --bs-secondary: #C8A27C; /* coklat muda */
-    --bs-light: #F5F1E9;
-    --bs-dark: #5A3E2B;      /* coklat text */
+    --bs-primary: #8b5e3c; /* coklat utama (lebih soft) */
+    --bs-secondary: #c8a27c; /* coklat muda */
+    --bs-light: #f5f1e9;
+    --bs-dark: #5a3e2b; /* coklat text */
 }
 
 /* Background */
 body {
-    background-color: #F5F1E9;
+    background-color: #f5f1e9;
 }
 
 /* HERO */
 .hero-header {
-    background: linear-gradient(
-        rgba(245, 241, 233, 0.9),
-        rgba(245, 241, 233, 0.9)
-    ), url('../img/hero-img.jpg');
+    background:
+        linear-gradient(rgba(245, 241, 233, 0.9), rgba(245, 241, 233, 0.9)),
+        url("../img/hero-img.jpg");
 }
 
 /* Carousel */
@@ -29,19 +28,19 @@ body {
 
 /* Input focus */
 .form-control:focus {
-    border-color: #8B5E3C;
-    box-shadow: 0 0 0 0.25rem rgba(139,94,60,0.2);
+    border-color: #8b5e3c;
+    box-shadow: 0 0 0 0.25rem rgba(139, 94, 60, 0.2);
 }
 
 /* Button */
 .btn-primary {
-    background-color: #8B5E3C;
-    border-color: #8B5E3C;
+    background-color: #8b5e3c;
+    border-color: #8b5e3c;
 }
 
 .btn-primary:hover {
-    background-color: #6F4A30;
-    border-color: #6F4A30;
+    background-color: #6f4a30;
+    border-color: #6f4a30;
 }
 
 /* Modal */
@@ -55,40 +54,42 @@ body {
 
 /* Text */
 .text-primary {
-    color: #5A3E2B !important;
+    color: #5a3e2b !important;
 }
 
 .text-success {
-    color: #8B5E3C !important;
+    color: #8b5e3c !important;
 }
 
 /* Background */
 .bg-primary {
-    background-color: #8B5E3C !important;
+    background-color: #8b5e3c !important;
 }
 
 .bg-success {
-    background-color: #C8A27C !important;
+    background-color: #c8a27c !important;
 }
 
 .bg-warning {
-    background-color: #D6B89A !important;
+    background-color: #d6b89a !important;
 }
 
 /* Button success */
 .btn-success {
-    background-color: #C8A27C !important;
-    border-color: #C8A27C !important;
+    background-color: #c8a27c !important;
+    border-color: #c8a27c !important;
 }
 
 .btn-success:hover {
-    background-color: #8B5E3C !important;
-    border-color: #8B5E3C !important;
+    background-color: #8b5e3c !important;
+    border-color: #8b5e3c !important;
 }
 
 /* Heading */
-h1, h2, h3 {
-    color: #5A3E2B !important;
+h1,
+h2,
+h3 {
+    color: #5a3e2b !important;
 }
 
 /* =========================
@@ -97,32 +98,32 @@ h1, h2, h3 {
 
 /* Background footer */
 .footer {
-    background-color: #4E3B31 !important; /* coklat gelap (lebih warm, bukan hijau) */
+    background-color: #4e3b31 !important; /* coklat gelap (lebih warm, bukan hijau) */
 }
 
 /* Judul */
 .footer h1,
 .footer h4 {
-    color: #FFFFFF !important;
+    color: #ffffff !important;
 }
 
 /* Text biasa */
 .footer p {
-    color: #EADFD6 !important; /* cream soft */
+    color: #eadfd6 !important; /* cream soft */
 }
 
 /* Link */
 .footer .btn-link {
-    color: #EADFD6 !important;
+    color: #eadfd6 !important;
 }
 
 .footer .btn-link:hover {
-    color: #FFFFFF !important;
+    color: #ffffff !important;
 }
 
 /* Subtitle kecil */
 .footer .text-secondary {
-    color: #D6B89A !important;
+    color: #d6b89a !important;
 }
 
 /* Border garis */
@@ -133,15 +134,14 @@ h1, h2, h3 {
 
 /* Tombol read more */
 .footer .btn.border-secondary {
-    color: #FFFFFF !important;
-    border-color: #C8A27C !important;
+    color: #ffffff !important;
+    border-color: #c8a27c !important;
 }
 
 .footer .btn.border-secondary:hover {
-    background-color: #C8A27C !important;
-    color: #3E2C23 !important;
+    background-color: #c8a27c !important;
+    color: #3e2c23 !important;
 }
-
 
 /* =========================
    BANNER TOBUKEL (FIX)
@@ -162,25 +162,25 @@ h1, h2, h3 {
 
 /* Sub text */
 .banner p {
-    color: #F5EDE4 !important;
+    color: #f5ede4 !important;
 }
 
 /* Tombol */
 .banner-btn {
     background-color: transparent;
-    border: 2px solid #F5EDE4 !important;
+    border: 2px solid #f5ede4 !important;
     color: #ffffff !important;
 }
 
 .banner-btn:hover {
-    background-color: #F5EDE4 !important;
-    color: #5A3E2B !important;
+    background-color: #f5ede4 !important;
+    color: #5a3e2b !important;
 }
 
 /* Lingkaran harga */
 .banner .bg-white {
-    background-color: #F5F1E9 !important;
-    color: #5A3E2B;
+    background-color: #f5f1e9 !important;
+    color: #5a3e2b;
 }
 
 /* =========================
@@ -189,25 +189,25 @@ h1, h2, h3 {
 
 /* Card background */
 .featurs-item {
-    background-color: #FFFFFF !important;
-    border: 1px solid #EADFD6;
+    background-color: #ffffff !important;
+    border: 1px solid #eadfd6;
     transition: 0.3s;
 }
 
 /* Hover effect biar hidup */
 .featurs-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* ICON CIRCLE (ganti orange jadi coklat) */
 .featurs-icon {
-    background-color: #C8A27C !important; /* coklat muda */
+    background-color: #c8a27c !important; /* coklat muda */
 }
 
 /* Diamond bawah icon */
 .featurs-icon::after {
-    background-color: #8B5E3C !important; /* coklat utama */
+    background-color: #8b5e3c !important; /* coklat utama */
 }
 
 /* Icon warna */
@@ -217,16 +217,16 @@ h1, h2, h3 {
 
 /* Judul */
 .featurs-content h5 {
-    color: #5A3E2B;
+    color: #5a3e2b;
     font-weight: 600;
 }
 
 /* Deskripsi */
 .featurs-content p {
-    color: #7A6A5A;
+    color: #7a6a5a;
 }
 .featurs-icon {
-    box-shadow: 0 5px 15px rgba(139,94,60,0.2);
+    box-shadow: 0 5px 15px rgba(139, 94, 60, 0.2);
 }
 
 /* =========================
@@ -235,13 +235,13 @@ h1, h2, h3 {
 
 /* Label kategori (Fruits -> Buku) */
 .fruite-item .bg-secondary {
-    background-color: #C8A27C !important; /* coklat muda */
+    background-color: #c8a27c !important; /* coklat muda */
     color: #fff;
 }
 
 /* Border card */
 .fruite-item .border-secondary {
-    border-color: #EADFD6 !important; /* soft cream border */
+    border-color: #eadfd6 !important; /* soft cream border */
 }
 
 /* Card body */
@@ -253,50 +253,52 @@ h1, h2, h3 {
 /* Hover effect */
 .fruite-item:hover {
     transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* Judul produk */
 .fruite-item h4 {
-    color: #5A3E2B;
+    color: #5a3e2b;
 }
 
 /* Deskripsi */
 .fruite-item p {
-    color: #7A6A5A;
+    color: #7a6a5a;
 }
 
 /* Harga */
 .fruite-item .text-dark {
-    color: #5A3E2B !important;
+    color: #5a3e2b !important;
 }
 
 /* Button Add to Cart */
 .fruite-item .btn {
-    border: 1px solid #C8A27C !important;
-    color: #8B5E3C !important;
+    border: 1px solid #c8a27c !important;
+    color: #8b5e3c !important;
     background-color: transparent;
 }
 
 .fruite-item .btn:hover {
-    background-color: #8B5E3C !important;
+    background-color: #8b5e3c !important;
     color: #fff !important;
 }
 
 /* Icon cart */
 .fruite-item .fa-shopping-bag {
-    color: #8B5E3C !important;
+    color: #8b5e3c !important;
 }
 
 .fruite-img img {
     transition: 0.4s;
+    transition: 0.3s;
+}
+.fruite-img {
+    overflow: hidden;
 }
 
 .fruite-item:hover .fruite-img img {
     transform: scale(1.05);
 }
-
-
 
 /* =========================
    NAVBAR TOBUKEL FIX
@@ -304,53 +306,53 @@ h1, h2, h3 {
 
 /* Logo */
 .navbar .navbar-brand h1 {
-    color: #5A3E2B !important;
+    color: #5a3e2b !important;
 }
 
 /* Menu link */
 .navbar .nav-link {
-    color: #6F4A30 !important;
+    color: #6f4a30 !important;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-    color: #8B5E3C !important;
+    color: #8b5e3c !important;
 }
 
 /* Icon search */
 .btn-search i {
-    color: #8B5E3C !important;
+    color: #8b5e3c !important;
 }
 
 /* Border search */
 .btn-search {
-    border-color: #C8A27C !important;
+    border-color: #c8a27c !important;
 }
 
 /* Icon cart & user */
 .fa-shopping-bag,
 .fa-user {
-    color: #8B5E3C !important;
+    color: #8b5e3c !important;
 }
 
 /* Badge angka cart */
 .navbar .position-absolute.bg-secondary {
-    background-color: #C8A27C !important;
+    background-color: #c8a27c !important;
     color: #fff !important;
 }
 
 /* Dropdown menu */
 .dropdown-menu {
-    background-color: #F5F1E9 !important;
+    background-color: #f5f1e9 !important;
 }
 
 .dropdown-item:hover {
-    background-color: #EADFD6 !important;
-    color: #5A3E2B !important;
+    background-color: #eadfd6 !important;
+    color: #5a3e2b !important;
 }
 
 .navbar {
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-brand h1 {
@@ -363,59 +365,59 @@ h1, h2, h3 {
 
 /* Card testimonial */
 .testimonial-item {
-    background-color: #FFFFFF !important;
-    border: 1px solid #EADFD6;
+    background-color: #ffffff !important;
+    border: 1px solid #eadfd6;
     transition: 0.3s;
 }
 
 /* Hover effect */
 .testimonial-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* Text isi */
 .testimonial-item p {
-    color: #6F5B4B;
+    color: #6f5b4b;
 }
 
 /* Nama client */
 .testimonial-item h4 {
-    color: #5A3E2B !important;
+    color: #5a3e2b !important;
 }
 
 /* Profession */
 .testimonial-item .m-0 {
-    color: #8B7A6B;
+    color: #8b7a6b;
 }
 
 /* Border line */
 .testimonial-item .border-secondary {
-    border-color: #EADFD6 !important;
+    border-color: #eadfd6 !important;
 }
 
 /* Icon quote */
 .testimonial-item .fa-quote-right {
-    color: #C8A27C !important;
+    color: #c8a27c !important;
 }
 
 /* Foto background */
 .testimonial-item .bg-secondary {
-    background-color: #C8A27C !important;
+    background-color: #c8a27c !important;
 }
 
 /* Rating bintang */
 .testimonial-item .fa-star {
-    color: #C8A27C !important;
+    color: #c8a27c !important;
 }
 
 /* Header */
 .testimonial-header h1 {
-    color: #5A3E2B !important;
+    color: #5a3e2b !important;
 }
 
 .testimonial-header h4 {
-    color: #A67C52 !important;
+    color: #a67c52 !important;
 }
 
 .testimonial-item {
@@ -424,9 +426,8 @@ h1, h2, h3 {
 
 .owl-carousel .owl-item.center .testimonial-item {
     transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
-
 
 /* book */
 .fruite-img {
@@ -455,36 +456,36 @@ h1, h2, h3 {
 
 /* Background container */
 .container-fluid .bg-light {
-    background-color: #F5F1E9 !important;
+    background-color: #f5f1e9 !important;
 }
 
 /* Card */
 .counter {
-    background-color: #FFFFFF !important;
-    border: 1px solid #EADFD6;
+    background-color: #ffffff !important;
+    border: 1px solid #eadfd6;
     border-radius: 15px;
     text-align: center;
     transition: 0.3s;
-     position: relative;
+    position: relative;
     overflow: hidden;
 }
 
 /* Hover effect */
 .counter:hover {
     transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* ICON (fix dari orange ke coklat) */
 .counter i {
-    color: #8B5E3C !important;
+    color: #8b5e3c !important;
     font-size: 45px;
     margin-bottom: 15px;
 }
 
 /* Judul */
 .counter h4 {
-    color: #6F4A30 !important;
+    color: #6f4a30 !important;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -492,7 +493,7 @@ h1, h2, h3 {
 
 /* Angka */
 .counter h1 {
-    color: #5A3E2B !important;
+    color: #5a3e2b !important;
     font-weight: bold;
 }
 
@@ -503,7 +504,7 @@ h1, h2, h3 {
     left: 0;
     width: 100%;
     height: 4px;
-    background: #C8A27C;
+    background: #c8a27c;
 }
 
 .product-img {
@@ -522,7 +523,7 @@ h1, h2, h3 {
 
 .featured-item {
     align-items: center;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .featured-img {
@@ -540,7 +541,7 @@ h1, h2, h3 {
 
 .featured-content h6 {
     font-size: 14px;
-    color: #5A3E2B;
+    color: #5a3e2b;
 }
 
 .banner-wrapper {
@@ -566,4 +567,43 @@ h1, h2, h3 {
     font-size: 28px; /* kecilkan biar gak nabrak */
     line-height: 1.3;
     word-wrap: break-word;
+}
+
+.book-img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+    height: 260px; /* samakan tinggi */
+    object-fit: cover; /* biar tidak gepeng */
+    border-radius: 10px 10px 0 0;
+}
+.fruite-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+
+     transition: all 0.3s ease;
+}
+
+.fruite-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+
+.fruite-item:hover img {
+    transform: scale(1.05);
+}
+
+.fruite-item .p-4 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.fruite-item .mt-auto {
+    margin-top: auto;
 }

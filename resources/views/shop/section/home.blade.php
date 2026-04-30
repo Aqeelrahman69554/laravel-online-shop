@@ -9,9 +9,6 @@
                 <h1 class="mb-5 display-3" style="color:#3E2C23;">
                     {{ $sliders->first()->home_title ?? 'Not Found' }}
                 </h1>
-                <h1 class="mb-5 display-3" style="color:#3E2C23;">
-                    {{ $sliders->first()->home_title ?? 'Not Found' }}
-                </h1>
 
                 <div class="position-relative mx-auto">
                     <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="text"
