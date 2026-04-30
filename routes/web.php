@@ -94,5 +94,13 @@ Route::middleware('auth')->group(function () {
 
 // Pengunjung
 Route::get('/tobukel', function(){
-    return view('shop.layouts.master');
-});
+    return view('shop.pages.home');
+})->name('home');
+
+Route::get('/shopdetail', function () {
+    return view('shop.pages.shopdetail');
+})->name('shopdetail');
+
+Route::get('tobukel/shop', function(){
+    return view('shop.pages.shop');
+})->name('shop');

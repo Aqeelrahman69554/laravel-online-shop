@@ -44,22 +44,24 @@
                                 <div class="col-md-6 col-lg-4 col-xl-3">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
-                                            <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top"
-                                                alt="">
+                                            <img src="{{ asset('shop/img/novel_3.jpg') }}"
+                                                class="img-fluid book-img rounded-top" alt="">
                                         </div>
                                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute">
                                             Novel
                                         </div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                            <h4>Laskar Pelangi</h4>
-                                            <p>Novel Inspiratif karya Andrea Hirata</p>
-                                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                                <p class="text-dark fs-5 fw-bold mb-0">Rp 85.000</p>
-                                                <a href="#"
-                                                    class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                    cart</a>
-                                            </div>
+                                            <a href="{{ route('shopdetail') }}">
+                                                <h4>Laskar Pelangi</h4>
+                                                <p>Novel Inspiratif karya Andrea Hirata</p>
+                                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                                    <p class="text-dark fs-5 fw-bold mb-0">Rp 85.000</p>
+                                                    <a href="#"
+                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+                                                        cart</a>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

@@ -296,6 +296,8 @@ h1, h2, h3 {
     transform: scale(1.05);
 }
 
+
+
 /* =========================
    NAVBAR TOBUKEL FIX
 ========================= */
@@ -423,4 +425,145 @@ h1, h2, h3 {
 .owl-carousel .owl-item.center .testimonial-item {
     transform: scale(1.05);
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+
+/* book */
+.fruite-img {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    position: relative;
+}
+
+.fruite-img img {
+    max-height: 100%;
+    width: auto;
+}
+
+.fruite-item .bg-secondary {
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+/* =========================
+   FACT / COUNTER FIX FINAL
+========================= */
+
+/* Background container */
+.container-fluid .bg-light {
+    background-color: #F5F1E9 !important;
+}
+
+/* Card */
+.counter {
+    background-color: #FFFFFF !important;
+    border: 1px solid #EADFD6;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+     position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect */
+.counter:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ICON (fix dari orange ke coklat) */
+.counter i {
+    color: #8B5E3C !important;
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+/* Judul */
+.counter h4 {
+    color: #6F4A30 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Angka */
+.counter h1 {
+    color: #5A3E2B !important;
+    font-weight: bold;
+}
+
+.counter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #C8A27C;
+}
+
+.product-img {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-detail-img {
+    width: 100%;
+    height: 420px;
+    object-fit: contain; /* biar full cover buku kelihatan */
+    background: #673b3b;
+    padding: 10px;
+}
+
+.featured-item {
+    align-items: center;
+    margin-bottom:20px;
+}
+
+.featured-img {
+    width: 80px;
+    height: 110px;
+    flex-shrink: 0;
+}
+
+.featured-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.featured-content h6 {
+    font-size: 14px;
+    color: #5A3E2B;
+}
+
+.banner-wrapper {
+    overflow: hidden; /* cegah teks keluar */
+}
+
+.banner-img {
+    height: 500px; /* kontrol tinggi banner */
+    object-fit: cover;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+
+    max-width: 40%; /* BATAS AREA TEKS */
+    text-align: right;
+}
+
+.banner-text h3 {
+    font-size: 28px; /* kecilkan biar gak nabrak */
+    line-height: 1.3;
+    word-wrap: break-word;
 }

@@ -6,27 +6,10 @@
 <body>
     {{-- NAVBAR INCLUDE --}}
     @include('shop.layouts._navbar')
-    
-    {{-- HOME INCLUDE --}}
-    @include('shop.pages.home')
 
-    {{-- SERVICE INCLUDE --}}
-    @include('shop.pages.service')
+    @yield('content')
 
-    {{-- BOOK INCLUDE --}}
-    @include('shop.pages.book')
 
-    {{-- BANNER INCLUDE --}}
-    @include('shop.pages.banner')
-
-    {{-- BESTSELLER INCLUDE --}}
-    @include('shop.pages.bestseller')
-
-    {{-- SERVICE2 INCLUDE --}}
-    @include('shop.pages.service2')
-
-    {{-- TESTIMONI INCLUDE --}}
-    @include('shop.pages.testimoni')
 
     {{-- FOOTER INCLUDE --}}
     @include('shop.layouts._footer')

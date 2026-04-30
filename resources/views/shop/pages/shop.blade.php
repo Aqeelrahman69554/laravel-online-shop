@@ -1,5 +1,5 @@
 @extends('shop.layouts.master')
 
 @section('content')
-@include('shop.section.shopdetail')
+@include('shop.section.shop')
 @endsection
