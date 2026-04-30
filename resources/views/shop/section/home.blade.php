@@ -6,7 +6,9 @@
             <!-- TEXT -->
             <div class="col-md-12 col-lg-7">
                 <h4 class="mb-3 text-secondary">Toko Buku Online Terpercaya</h4>
-                <h1 class="mb-5 display-3" style="color:#3E2C23;">Temukan Buku Favoritmu di TOBUKEL</h1>
+                <h1 class="mb-5 display-3" style="color:#3E2C23;">
+                    {{ $sliders->first()->home_title ?? 'Not Found' }}
+                </h1>
 
                 <div class="position-relative mx-auto">
                     <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="text"
@@ -23,37 +25,40 @@
             <!-- IMAGE SLIDER -->
             <div class="col-md-12 col-lg-5">
                 <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
-
                     <div class="carousel-inner" role="listbox">
+                        @if (isset($sliders) && $sliders->count() > 0)
+                            @foreach ($sliders as $slider)
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }} rounded">
+                                    <!-- Hapus 'images/home/' manual karena sudah ada di database -->
+                                    <img src="{{ asset('storage/' . $slider->home_image) }}"
+                                        class="img-fluid w-100 h-100 bg-secondary rounded"
+                                        alt="{{ $slider->home_title }}">
 
-                        <div class="carousel-item active rounded">
-                            <img src="img/book-hero-1.jpg" class="img-fluid w-100 h-100 bg-secondary rounded"
-                                alt="Novel">
-                            <a class="btn px-4 py-2 text-white rounded" style="background:#6B4F3A;">Novel</a>
-                        </div>
-
-                        <div class="carousel-item rounded">
-                            <img src="img/book-hero-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Komik">
-                            <a class="btn px-4 py-2 text-white rounded" style="background:#A67C52;">Komik</a>
-                        </div>
-
-                        <div class="carousel-item rounded">
-                            <img src="img/book-hero-3.jpg" class="img-fluid w-100 h-100 rounded" alt="Edukasi">
-                            <a class="btn px-4 py-2 text-white rounded" style="background:#8B6B4A;">Buku Edukasi</a>
-                        </div>
-
+                                    <a class="btn px-4 py-2 text-white rounded" style="background:#6B4F3A;">
+                                        {{ $slider->home_title }}
+                                    </a>
+                                </div>
+                            @endforeach
+                        @else
+                            <!-- Tampilan jika data di database kosong -->
+                            <div class="carousel-item active rounded">
+                                <img src="{{ asset('storage/' . $slider->home_image) }}"
+                                    class="img-fluid w-100 h-100 bg-secondary rounded" alt="{{ $slider->home_title }}"
+                                    alt="Default">
+                                <a class="btn px-4 py-2 text-white rounded" style="background:#6B4F3A;">Selamat
+                                    Datang</a>
+                            </div>
+                        @endif
                     </div>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </button>
-
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselId"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </button>
-
                 </div>
             </div>
 
