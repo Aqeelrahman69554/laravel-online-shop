@@ -1,3 +1,11 @@
+
+html {
+    scroll-behavior: smooth;
+}
+#produk {
+    scroll-margin-top: 120px;
+    
+}
 /* ===============================
    THEME TOBUKEL (IMPROVED BROWN)
 ================================= */

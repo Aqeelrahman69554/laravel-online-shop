@@ -1,5 +1,5 @@
 <!-- Fruits Shop Start-->
-<div class="container-fluid fruite py-5">
+<div id="produk" class="container-fluid fruite py-5">
     <div class="container py-5">
         <div class="tab-class text-center">
             <div class="row g-4">
@@ -10,7 +10,7 @@
                     <ul class="nav nav-pills d-inline-flex text-center mb-5">
                         {{-- ALL --}}
                         <li class="nav-item">
-                            <a href="{{ url('/tobukel') }}"
+                            <a href="{{ route('shop') }}#produk"
                                 class="d-flex m-2 py-2 rounded-pill {{ request('category') == null ? 'bg-primary text-white' : 'bg-light text-dark' }}">
                                 <span style="width: 130px;">All</span>
                             </a>
@@ -19,7 +19,7 @@
                         {{-- LOOP CATEGORY --}}
                         @foreach ($categories as $cat)
                             <li class="nav-item">
-                                <a href="{{ url('/tobukel?category=' . $cat->id) }}"
+                                <a href="{{ route('shop', ['category' =>$cat->id]) }}#produk"
                                     class="d-flex m-2 py-2 rounded-pill {{ request('category') == $cat->id ? 'bg-primary text-white' : 'bg-light text-dark' }}">
                                     <span style="width: 130px;">
                                         {{ $cat->name }}

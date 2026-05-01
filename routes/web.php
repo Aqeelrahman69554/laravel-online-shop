@@ -103,6 +103,4 @@ Route::get('/', [ShopHomeControler::class, 'index'])->name('home');
 Route::get('/shopdetail/{id}',[ShopHomeControler::class, 'detail'])->name('shopdetail');
 
 
-Route::get('tobukel/shop', function () {
-    return view('shop.pages.shop');
-})->name('shop');
+Route::get('tobukel/shop',[ShopHomeControler::class,'index'])->name('shop');
