@@ -35,7 +35,7 @@ class BooksController extends Controller
             'category_id'  => 'required|exists:categories,id',
             'books_name'    => 'required|string|max:255',
             'books_author'  => 'required|string|max:255',
-            'books_images'  => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'books_images'  => 'required|image|mimes:jpg,png,jpeg,webp|max:2048',
             'price'         => 'required|numeric',
             'stock'         => 'required|integer',
             'books_desc'    => 'required',
@@ -63,7 +63,7 @@ class BooksController extends Controller
         $request->validate([
             'category_id'  => 'required|exists:categories,id',
             'books_name'    => 'required|string|max:255',
-            'books_images'  => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'books_images'  => 'nullable|image|mimes:jpg,png,jpeg,webp|max:2048',
         ]);
 
         $book->books_name = $request->books_name;

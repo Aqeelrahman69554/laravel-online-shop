@@ -18,17 +18,7 @@
         <!-- Modal Search End -->
 
 
-        <!-- Single Page Header start -->
-        <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Shop Detail</h1>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Shop Detail</li>
-            </ol>
-        </div>
-        <!-- Single Page Header End -->
-
+        <br><br><br>
 
         <!-- Single Product Start -->
         <div class="container-fluid py-5 mt-5">
@@ -39,13 +29,13 @@
                             <div class="col-lg-6">
                                 <div class="border rounded">
                                     <a href="#">
-                                        <img src="{{ asset('shop/img/novel_1.jpg') }}" class="product-detail-img" alt="Image">
+                                        <img src="{{ asset('/storage/'.$book->books_images) }}" class="product-detail-img" alt="Image">
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <h4 class="fw-bold mb-3">Brocoli</h4>
-                                <p class="mb-3">Category: Vegetables</p>
+                                <h4 class="fw-bold mb-3">{{ $book->books_name }}</h4>
+                                <p class="mb-3">Category: {{ $book->category_name }}</p>
                                 <h5 class="fw-bold mb-3">3,35 $</h5>
                                 <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>
@@ -54,8 +44,8 @@
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
-                                <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
+                                <p class="mb-4"> {!! nl2br(e($book->books_desc)) !!}</p>
+                               
                                 <div class="input-group quantity mb-5" style="width: 100px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
@@ -137,7 +127,7 @@
                                     </div>
                                     <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
                                         <div class="d-flex">
-                                            <img src="{{ asset('shop/img/edukasi_1.jpg') }}" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                            <img src="{{ asset('/storage/'.$book->books_images) }}" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
                                             <div class="">
                                                 <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
                                                 <div class="d-flex justify-content-between">

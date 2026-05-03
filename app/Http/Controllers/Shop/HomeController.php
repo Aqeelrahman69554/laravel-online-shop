@@ -11,30 +11,43 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        // Mengambil data slider dari tabel home
         $sliders = DB::table('home')->get();
         $services = DB::table('service')->get();
-
-        //ambil categroi
         $categories = DB::table('categories')->get();
 
-        //query buku
-        $query = DB::table('books');
+        // 🔥 kalau pilih kategori
+        if ($request->category) {
+            $books = DB::table('books')
+                ->where('category_id', $request->category)
+                ->paginate(8);
+        } else {
+            // 🔥 ALL (ambil 2 buku per kategori)
+            $books = collect();
 
-        // filter kategori (INI KUNCINYA)
-        if ($request->get('category')) {
-            $query->where('category_id', $request->get('category'));
+            foreach ($categories as $cat) {
+                $data = DB::table('books')
+                    ->where('category_id', $cat->id)
+                    ->inRandomOrder()
+                    ->limit(2)
+                    ->get();
+
+                $books = $books->merge($data);
+            }
+
+            // 🔥 batasi total 8
+            $books = $books->take(8);
         }
 
-        $books = $query->paginate(6);
-
-        // Mengirim data ke view master
         return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories'));
     }
 
     public function detail($id)
     {
-        $book = DB::table('books')->where('id', $id)->first();
+        $book = DB::table('books')
+        ->join('categories','books.category_id', '=', 'categories.id')
+        ->select('books.*', 'categories.name as category_name')
+        ->where('books.id',$id)
+        ->first();
 
         if (!$book) {
             abort(404);
