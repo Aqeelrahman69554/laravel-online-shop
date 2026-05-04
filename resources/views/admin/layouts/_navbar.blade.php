@@ -1,7 +1,7 @@
 <!-- Navbar Header -->
 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
     <div class="container-fluid">
-        <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+        <nav class="navbar navbar-header-left navbar-expand-lg navbar-custom navbar-form nav-search p-0 d-none d-lg-flex">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <button type="submit" class="btn btn-search pe-1">

@@ -14,7 +14,8 @@ use App\Http\Controllers\Admin\TestimoniController;
 use App\Http\Controllers\Auth\LoginController;
 
 // URL SHOP
-use App\Http\Controllers\Shop\HomeController as ShopHomeControler;
+use App\Http\Controllers\Shop\HomeController as ShopHomeController;
+use App\Http\Controllers\Shop\CartController;
 
 
 // --- Bagian Admin Proyek Kamu ---
@@ -97,12 +98,15 @@ Route::middleware('auth')->group(function () {
 
 
 // --- PENGUNJUNG (Public) ---
-Route::get('/', [ShopHomeControler::class, 'index'])->name('home');
+Route::get('/', [ShopHomeController::class, 'index'])->name('home');
 
 
-Route::get('/shopdetail/{id}',[ShopHomeControler::class, 'detail'])->name('shopdetail');
+Route::get('/shopdetail/{id}',[ShopHomeController::class, 'detail'])->name('shopdetail');
 
 
-Route::get('tobukel/shop',[ShopHomeControler::class,'index'])->name('shop');
+Route::get('tobukel/shop',[ShopHomeController::class,'index'])->name('shop');
 
+Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 

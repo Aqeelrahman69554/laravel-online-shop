@@ -90,7 +90,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('admin/orders*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('admin.orders*') ? 'active' : '' }}">
                     <a href="{{ route('admin.orders') }}">
                         <i class="fas fa-receipt"></i>
                         <p>Orders</p>

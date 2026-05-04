@@ -8,7 +8,7 @@
     <script src="{{ asset('admin2/assets/js/plugin/webfont/webfont.min.js') }}"></script>
 
     <!-- Pastikan ini ada di file master.blade.php -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         WebFont.load({
             google: {
@@ -33,6 +33,11 @@
     <link rel="stylesheet" href="{{ asset('admin2/assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin2/assets/css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin2/assets/css/kaiadmin.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin2/assets/css/custom.css') }}" />
+
+    <style>
+
+    </style>
 
 
 </head>
