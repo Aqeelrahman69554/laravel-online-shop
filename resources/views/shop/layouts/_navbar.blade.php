@@ -36,6 +36,7 @@
                 <div class="navbar-nav mx-auto">
                     <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                     <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
+                    <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">

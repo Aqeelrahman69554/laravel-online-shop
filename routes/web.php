@@ -100,6 +100,10 @@ Route::middleware('auth')->group(function () {
 // --- PENGUNJUNG (Public) ---
 Route::get('/', [ShopHomeController::class, 'index'])->name('home');
 
+Route::get('/about', function () {
+    return view('shop.pages.about');
+})->name('about');
+
 
 Route::get('/shopdetail/{id}',[ShopHomeController::class, 'detail'])->name('shopdetail');
 
