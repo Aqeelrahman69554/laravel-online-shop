@@ -4,7 +4,7 @@ html {
 }
 #produk {
     scroll-margin-top: 120px;
-    
+
 }
 /* ===============================
    THEME TOBUKEL (IMPROVED BROWN)
@@ -614,4 +614,24 @@ h3 {
 
 .fruite-item .mt-auto {
     margin-top: auto;
+}
+
+.product-detail-img {
+    transition: 0.3s;
+}
+
+.product-detail-img:hover {
+    transform: scale(1.02);
+}
+
+.quantity button {
+    height: 45px;
+}
+
+.quantity input {
+    height: 45px;
+}
+
+.badge {
+    font-size: 14px;
 }
