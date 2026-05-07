@@ -635,3 +635,85 @@ h3 {
 .badge {
     font-size: 14px;
 }
+
+/* =========================
+   FOOTER TOBUKEL THEME
+========================= */
+
+.footer {
+    background: linear-gradient(135deg, #4E342E, #6D4C41);
+    color: #f5e6d3;
+}
+
+.footer h1,
+.footer h4 {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.footer p {
+    color: #e8d9c8;
+    line-height: 1.9;
+}
+
+.footer a {
+    color: #f3e5d8;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #FFD180;
+    padding-left: 5px;
+}
+
+.footer .btn {
+    border: 2px solid #FFD180;
+    color: #FFD180;
+    transition: 0.3s;
+}
+
+.footer .btn:hover {
+    background-color: #FFD180;
+    color: #4E342E;
+}
+
+.footer .btn-outline-light {
+    border-color: rgba(255,255,255,0.5);
+}
+
+.footer .btn-outline-light:hover {
+    background-color: #FFD180;
+    border-color: #FFD180;
+    color: #4E342E !important;
+}
+
+.footer .border-secondary {
+    border-color: rgba(255,255,255,0.15) !important;
+}
+
+.footer .text-primary {
+    color: #FFD180 !important;
+}
+
+.footer .text-secondary {
+    color: #e6cdb4 !important;
+}
+
+.footer .footer-item img {
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+/* COPYRIGHT */
+.footer .copyright-text {
+    color: #f5e6d3;
+    font-size: 15px;
+}
+
+.footer .copyright-text span {
+    color: #FFD180;
+    font-weight: 700;
+}
