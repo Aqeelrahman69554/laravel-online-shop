@@ -3,49 +3,57 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Models\Cart;
+use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function add($id)
-    {
-        $book = DB::table('books')->where('id', $id)->first();
-
-        if (!$book) return back();
-
-        $cart = session()->get('cart', []);
-
-        // kalau sudah ada → tambah qty
-        if (isset($cart[$id])) {
-            $cart[$id]['qty']++;
-        } else {
-            $cart[$id] = [
-                'name' => $book->books_name,
-                'price' => $book->price,
-                'image' => $book->books_images,
-                'qty' => 1
-            ];
-        }
-
-        session()->put('cart', $cart);
-
-        return back()->with('success', 'Berhasil ditambahkan ke cart!');
-    }
-
+    // Menampilkan isi keranjang
     public function index()
     {
-        $cart = session()->get('cart', []);
-        return view('shop.pages.cart', compact('cart'));
+        // Mengambil data cart milik user yang sedang login beserta data bukunya
+        $carts = Cart::with('book')->where('user_id', Auth::id())->get();
+
+        return view('shop.pages.cart', compact('carts'));
     }
 
+    // Menambah buku ke keranjang
+    public function add(Request $request, $id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+
+        $book = Book::findOrFail($id);
+
+        // Cek apakah buku sudah ada di keranjang user tersebut
+        $cartItem = Cart::where('user_id', Auth::id())
+            ->where('book_id', $id)
+            ->first();
+
+        if ($cartItem) {
+            // Jika ada, tambah quantity-nya
+            $cartItem->increment('quantity', $request->quantity ?? 1);
+        } else {
+            // Jika belum ada, buat record baru
+            Cart::create([
+                'user_id' => Auth::id(),
+                'book_id' => $id,
+                'quantity' => $request->quantity ?? 1,
+            ]);
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Buku berhasil ditambahkan ke keranjang!');
+    }
+
+    // Menghapus item dari keranjang
     public function remove($id)
     {
-        $cart = session()->get('cart', []);
+        $cart = Cart::where('user_id', Auth::id())->where('id', $id)->firstOrFail();
+        $cart->delete();
 
-        unset($cart[$id]);
-
-        session()->put('cart', $cart);
-
-        return back();
+        return back()->with('success', 'Item berhasil dihapus.');
     }
 }

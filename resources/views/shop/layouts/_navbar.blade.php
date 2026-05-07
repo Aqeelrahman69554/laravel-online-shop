@@ -58,9 +58,30 @@
                             class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white px-1"
                             style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ $totalQty }}</span>
                     </a>
-                    <a href="#" class="my-auto">
-                        <i class="fas fa-user fa-2x"></i>
-                    </a>
+
+                    @auth
+                        <!-- Tampilan jika sudah LOGIN -->
+                        <div class="nav-item dropdown my-auto">
+                            <a href="#" class="nav-link dropdown-toggle p-0" data-bs-toggle="dropdown">
+                                <i class="fas fa-user fa-2x"></i>
+                                <span class="d-none d-md-inline ms-2">{{ Auth::user()->name }}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end m-0 bg-secondary rounded-0">
+                                @if (Auth::user()->role === 'admin')
+                                    <a href="{{ route('admin.dashboard') }}" class="dropdown-item">Dashboard Admin</a>
+                                @endif
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </div>
+                        </div>
+                    @else
+                        <!-- Tampilan jika BELUM LOGIN -->
+                        <a href="{{ route('login') }}" class="my-auto">
+                            <i class="fas fa-user fa-2x"></i>
+                        </a>
+                    @endauth
                 </div>
             </div>
         </nav>

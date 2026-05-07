@@ -1,217 +1,304 @@
-        <!-- Spinner Start -->
-        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
-            <div class="spinner-grow text-primary" role="status"></div>
-        </div>
-        <!-- Spinner End -->
+<!-- Spinner Start -->
+<div id="spinner"
+    class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+</div>
+<!-- Spinner End -->
 
 
 
 
-        <!-- Modal Search Start -->
-        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content rounded-0">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-flex align-items-center">
-                        <div class="input-group w-75 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                        </div>
-                    </div>
+<!-- Modal Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center">
+                <div class="input-group w-75 mx-auto d-flex">
+                    <input type="search" class="form-control p-3" placeholder="keywords"
+                        aria-describedby="search-icon-1">
+                    <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                 </div>
             </div>
         </div>
-        <!-- Modal Search End -->
+    </div>
+</div>
+<!-- Modal Search End -->
 
 
-        <!-- Single Page Header start -->
-        <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Cart</h1>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Cart</li>
-            </ol>
-        </div>
-        <!-- Single Page Header End -->
-
-
-        <!-- Cart Page Start -->
-        <div class="container-fluid py-5">
-            <div class="container py-5">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Products</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Handle</th>
-                          </tr>
+<!-- Single Page Header start -->
+<div class="container-fluid page-header py-5"
+    style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{ asset('shop/img/cart-bg.jpg') }}'); background-size: cover;">
+    <h1 class="text-center text-white display-6 fw-bold">Shopping Cart</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-white">Home</a></li>
+        <li class="breadcrumb-item active text-white">Cart</li>
+    </ol>
+</div>
+<div class="container-fluid py-5 bg-light">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="table-responsive bg-white shadow-sm rounded-4 p-4">
+                    <table class="table align-middle">
+                        <thead class="text-muted border-bottom">
+                            <tr>
+                                <th scope="col" class="py-3">Produk</th>
+                                <th scope="col" class="py-3">Info</th>
+                                <th scope="col" class="py-3">Harga</th>
+                                <th scope="col" class="py-3">Jumlah</th>
+                                <th scope="col" class="py-3">Total</th>
+                                <th scope="col" class="py-3 text-end">Aksi</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Big Banana</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
+                            @php $subtotal = 0; @endphp
+                            @forelse ($carts as $item)
+                                @php
+                                    $itemTotal = $item->book->price * $item->quantity;
+                                    $subtotal += $itemTotal;
+                                @endphp
+                                <tr>
+                                    <th scope="row" class="py-4">
+                                        <img src="{{ asset('storage/' . $item->book->books_images) }}"
+                                            class="img-fluid rounded-3 shadow-sm"
+                                            style="width: 70px; height: 90px; object-fit: cover;"
+                                            alt="{{ $item->book->books_name }}">
+                                    </th>
+                                    <td>
+                                        <h6 class="mb-0 fw-bold text-dark">{{ $item->book->books_name }}</h6>
+                                        <small class="text-muted">Buku Fisik</small>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 text-dark">Rp
+                                            {{ number_format($item->book->price, 0, ',', '.') }}</p>
+                                    </td>
+                                    <td>
+                                        <div class="input-group quantity" style="width: 100px;">
+                                            <input type="text"
+                                                class="form-control form-control-sm text-center border shadow-none bg-light rounded-pill"
+                                                value="{{ $item->quantity }}">
                                         </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 fw-bold text-primary">Rp
+                                            {{ number_format($itemTotal, 0, ',', '.') }}</p>
+                                    </td>
+                                    <td class="text-end">
+                                        <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="btn btn-sm btn-outline-danger rounded-circle border-0 p-2 shadow-sm">
+                                                <i class="fa fa-trash"></i>
                                             </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-5">
+                                        <div class="py-4">
+                                            <i class="fa fa-shopping-cart fa-4x text-muted mb-3 d-block"></i>
+                                            <h5 class="text-muted">Keranjang Anda masih kosong</h5>
+                                            <a href="{{ route('shop') }}"
+                                                class="btn btn-primary rounded-pill mt-3 px-4">Mulai Belanja</a>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Potatoes</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Awesome Brocoli</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-5">
-                    <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+
+                <div class="mt-4 p-4 bg-white shadow-sm rounded-4 d-flex flex-wrap gap-3 align-items-center">
+                    <input type="text" class="form-control border-0 bg-light rounded-pill px-4 py-2 flex-grow-1"
+                        placeholder="Masukkan Kode Kupon" style="max-width: 300px;">
+                    <button class="btn btn-dark rounded-pill px-4 py-2" type="button">Pakai Kupon</button>
                 </div>
-                <div class="row g-4 justify-content-end">
-                    <div class="col-8"></div>
-                    <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                        <div class="bg-light rounded">
-                            <div class="p-4">
-                                <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
-                                <div class="d-flex justify-content-between mb-4">
-                                    <h5 class="mb-0 me-4">Subtotal:</h5>
-                                    <p class="mb-0">$96.00</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="mb-0 me-4">Shipping</h5>
-                                    <div class="">
-                                        <p class="mb-0">Flat rate: $3.00</p>
-                                    </div>
-                                </div>
-                                <p class="mb-0 text-end">Shipping to Ukraine.</p>
-                            </div>
-                            <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                <h5 class="mb-0 ps-4 me-4">Total</h5>
-                                <p class="mb-0 pe-4">$99.00</p>
-                            </div>
-                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-header bg-dark py-3">
+                        <h5 class="mb-0 text-white text-center">Ringkasan Belanja</h5>
+                    </div>
+                    <div class="card-body p-4 bg-white">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Subtotal ({{ count($carts) }} Produk)</span>
+                            <span class="fw-bold">Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="text-muted">Biaya Layanan</span>
+                            <span class="text-success">Rp 2.000</span>
+                        </div>
+                        <hr class="dashed">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0 fw-bold">Total Tagihan</h5>
+                            <h4 class="mb-0 fw-bold text-primary">Rp
+                                {{ number_format($subtotal + 2000, 0, ',', '.') }}</h4>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill py-3 fw-bold text-uppercase shadow-sm"
+                            type="button" {{ count($carts) == 0 ? 'disabled' : '' }}>
+                            Checkout Sekarang
+                        </button>
+
+                        <div class="mt-4 text-center">
+                            <small class="text-muted"><i class="fa fa-shield-alt me-1"></i> Transaksi Aman &
+                                Terenkripsi</small>
                         </div>
                     </div>
                 </div>
+
+                <a href="{{ route('shop') }}" class="btn btn-link w-100 text-decoration-none mt-3 text-muted">
+                    <i class="fa fa-arrow-left me-2 small"></i> Lanjut Belanja
+                </a>
             </div>
         </div>
-        <!-- Cart Page End -->
+    </div>
+</div>
+<style>
+    /* Tambahkan di CSS kamu */
+    .dashed {
+        border-top: 1px dashed #dee2e6;
+        opacity: 1;
+    }
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    .rounded-4 {
+        border-radius: 1.25rem !important;
+    }
+
+    .btn-primary {
+        background-color: #81c408;
+        /* Sesuaikan dengan warna primer Tobukel kamu */
+        border-color: #81c408;
+    }
+
+    .text-primary {
+        color: #81c408 !important;
+    }
+
+    .page-header {
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+<!-- Single Page Header End -->
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<!-- Cart Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Products</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $subtotal = 0; @endphp
+                    @forelse ($carts as $item)
+                        @php
+                            // Pastikan menggunakan nama kolom 'price' sesuai DB kamu
+                            $itemTotal = $item->book->price * $item->quantity;
+                            $subtotal += $itemTotal;
+                        @endphp
+                        <tr>
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset('storage/' . $item->book->books_images) }}"
+                                        class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;"
+                                        alt="{{ $item->book->books_name }}">
+                                </div>
+                            </th>
+                            <td>
+                                <p class="mb-0 mt-4">{{ $item->book->books_name }}</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">Rp {{ number_format($item->book->price, 0, ',', '.') }}</p>
+                            </td>
+                            <td>
+                                <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <input type="text" class="form-control form-control-sm text-center border-0"
+                                        value="{{ $item->quantity }}" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">Rp {{ number_format($itemTotal, 0, ',', '.') }}</p>
+                            </td>
+                            <td>
+                                <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-md rounded-circle bg-light border mt-4">
+                                        <i class="fa fa-times text-danger"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center py-5">Keranjang Anda kosong.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-5">
+            <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
+            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply
+                Coupon</button>
+        </div>
+        <div class="row g-4 justify-content-end">
+            <div class="col-8"></div>
+            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+                <div class="bg-light rounded">
+                    <div class="p-4">
+                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                        <div class="d-flex justify-content-between mb-4">
+                            <h5 class="mb-0 me-4">Subtotal:</h5>
+                            <p class="mb-0">Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-0 me-4">Biaya Layanan</h5>
+                            <div class="">
+                                <p class="mb-0">Rp 2.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                        <p class="mb-0 pe-4">Rp {{ number_format($subtotal + 2000, 0, ',', '.') }}</p>
+                    </div>
+                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+                        type="button">Proceed Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart Page End -->
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
+        class="fa fa-arrow-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/lightbox/js/lightbox.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>

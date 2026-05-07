@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - TOBUKEL</title>
-
+    <title>Daftar Member - TOBUKEL</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <style>
         * {
             margin: 0;
@@ -246,98 +244,92 @@
                 padding: 20px;
             }
         }
+
+
+        .brand span {
+            color: #ffcf8b;
+        }
+
+        .login-container {
+            grid-template-columns: 1fr 520px;
+        }
+
+        /* Sedikit lebih lebar untuk form register */
     </style>
 </head>
 
 <body>
-
     <div class="overlay"></div>
-
     <div class="login-wrapper">
-
         <div class="login-container">
-
-            <!-- LEFT -->
+            <!-- LEFT (Tetap sama agar branding konsisten) -->
             <div class="left-side">
-
-                <div class="top-badge">
-                    📚 Dashboard Administrator
-                </div>
-
-                <h1 class="brand">
-                    TOBU<span>KEL</span>
-                </h1>
-
+                <div class="top-badge">✨ Member Baru TOBUKEL</div>
+                <h1 class="brand">TOBU<span>KEL</span></h1>
                 <p class="description">
-                    Kelola toko buku online Anda dengan lebih mudah, modern,
-                    dan profesional. Pantau buku, transaksi, customer,
-                    serta seluruh aktivitas toko dalam satu dashboard.
+                    Bergabunglah bersama ribuan pecinta buku lainnya.
+                    Dapatkan akses penuh untuk berbelanja, melacak pesanan,
+                    dan info buku terbaru setiap harinya.
                 </p>
-
                 <div class="feature-box">
-                    <div class="feature">📖 Kelola Buku</div>
-                    <div class="feature">🛒 Monitoring Order</div>
-                    <div class="feature">📊 Statistik Penjualan</div>
+                    <div class="feature">🛍️ Belanja Mudah</div>
+                    <div class="feature">🏷️ Promo Eksklusif</div>
+                    <div class="feature">📦 Tracking Pesanan</div>
                 </div>
-
             </div>
 
-            <!-- RIGHT -->
+            <!-- RIGHT (Form Register) -->
             <div class="right-side">
-
                 <div class="login-card">
+                    <h2 class="login-title">Daftar Akun</h2>
+                    <span class="login-subtitle">Lengkapi data diri untuk mulai menjelajahi buku</span>
 
-                    <h2 class="login-title">
-                        Welcome Back 👋
-                    </h2>
+                    @if ($errors->any())
+                        <div style="color: #c0392b; margin-bottom: 20px; font-size: 13px;">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                    <span class="login-subtitle">
-                        Silakan login untuk masuk ke dashboard admin TOBUKEL
-                    </span>
-
-                    <form action="{{ route('login.post') }}" method="POST">
+                    <form action="{{ route('register.post') }}" method="POST">
                         @csrf
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" name="name" class="form-input" placeholder="Nama Anda..."
+                                value="{{ old('name') }}" required>
+                        </div>
 
                         <div class="form-group">
-                            <label class="form-label">
-                                Email Address
-                            </label>
+                            <label class="form-label">Alamat Email</label>
+                            <input type="email" name="email" class="form-input" placeholder="email@contoh.com"
+                                value="{{ old('email') }}" required>
+                        </div>
 
-                            <input type="email" name="email" class="form-input" placeholder="Your Email..."
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" class="form-input" placeholder="Min. 8 karakter"
                                 required>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">
-                                Password
-                            </label>
-
-                            <input type="password" name="password" class="form-input" placeholder="••••••••" required>
+                            <label class="form-label">Konfirmasi Password</label>
+                            <input type="password" name="password_confirmation" class="form-input"
+                                placeholder="Ulangi password" required>
                         </div>
 
-                        <button type="submit" class="btn-login">
-                            Sign In
-                        </button>
-
+                        <button type="submit" class="btn-login">Daftar Sekarang</button>
                     </form>
 
                     <div class="back-home">
-                        <a href="{{ route('register') }}">
-                            Belum punya akun? <b>Daftar Sekarang</b>
-                        </a>
+                        <a href="{{ route('login') }}">Sudah punya akun? <b>Login di sini</b></a>
                     </div>
-                    <div class="back-home" style="margin-top: 10px;">
-                        <a href="/">← Kembali ke Beranda</a>
-                    </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>

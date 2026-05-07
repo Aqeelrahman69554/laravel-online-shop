@@ -42,7 +42,7 @@
                                         {{-- box book --}}
                                         <div class="rounded position-relative fruite-item h-100">
                                             <div class="fruite-img">
-                                                <img src="{{ asset('/storage/'.$item->books_images) }}"
+                                                <img src="{{ asset('/storage/' . $item->books_images) }}"
                                                     class="img-fluid book-img rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute">
@@ -63,11 +63,15 @@
                                                         Rp {{ number_format($item->price, 0, ',', '.') }}
                                                     </p>
 
-                                                    <!-- tombol terpisah -->
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                        <i class="fa fa-shopping-bag me-2"></i> Add to cart
-                                                    </a>
+                                                    <!-- UBAH DARI <a> MENJADI <form> -->
+                                                    <form action="{{ route('cart.add', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <button type="submit"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary">
+                                                            <i class="fa fa-shopping-bag me-2"></i> Add to cart
+                                                        </button>
+                                                    </form>
                                                 </div>
 
                                             </div>

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             BookSeeder::class,
             OrdersSeeder::class,
             OrdersItemsSeeder::class,
-            CartSeeder::class,
+            // CartSeeder::class,
             HomeSeeder::class,
             ContactSeeder::class,
             StoreProfilesSeeder::class,

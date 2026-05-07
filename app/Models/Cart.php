@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Cart extends Model
 {
     // Mengizinkan mass assignment untuk kolom yang ada di migrasi
+    protected $table = 'cart';
+
     protected $fillable = [
         'user_id',
         'book_id',
@@ -27,6 +29,7 @@ class Cart extends Model
      */
     public function book(): BelongsTo
     {
-        return $this->belongsTo(Book::class);
+        // Pastikan foreign key-nya adalah 'book_id'
+        return $this->belongsTo(Book::class, 'book_id');
     }
 }

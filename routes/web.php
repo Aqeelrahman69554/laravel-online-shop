@@ -32,6 +32,9 @@ Route::get('login', function () {
 Route::post('login', [LoginController::class, 'authenticate'])->name('login.post');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
+// REGISTER
+Route::get('register', [LoginController::class, 'showRegister'])->name('register');
+Route::post('register', [LoginController::class, 'registerStore'])->name('register.post');
 
 Route::middleware('auth')->group(function () {
 
@@ -93,6 +96,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/testimoni/store', [TestimoniController::class, 'store'])->name('admin.testimoni.store');
         Route::delete('/testimoni/delete/{id}', [TestimoniController::class, 'destroy'])->name('admin.testimoni.delete');
     });
+
+    // Route Cart untuk Pengunjung
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 });
 
 
@@ -105,12 +113,7 @@ Route::get('/about', function () {
 })->name('about');
 
 
-Route::get('/shopdetail/{id}',[ShopHomeController::class, 'detail'])->name('shopdetail');
+Route::get('/shopdetail/{id}', [ShopHomeController::class, 'detail'])->name('shopdetail');
 
 
-Route::get('tobukel/shop',[ShopHomeController::class,'index'])->name('shop');
-
-Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-
+Route::get('tobukel/shop', [ShopHomeController::class, 'index'])->name('shop');
