@@ -1,9 +1,8 @@
 @php
-    $cart = session('cart', []);
     $totalQty = 0;
-
-    foreach ($cart as $item) {
-        $totalQty += $item['qty'];
+    if (auth()->check()) {
+        // Hitung total quantity dari tabel cart untuk user ini
+        $totalQty = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
     }
 @endphp
 <!-- Navbar start -->
@@ -54,9 +53,11 @@
                             class="fas fa-search text-primary"></i></button>
                     <a href="{{ route('cart.index') }}" class="position-relative me-4 my-auto">
                         <i class="fa fa-shopping-bag fa-2x"></i>
-                        <span
+                        <span id="cart-badge"
                             class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white px-1"
-                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ $totalQty }}</span>
+                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                            {{ $totalQty }}
+                        </span>
                     </a>
 
                     @auth
