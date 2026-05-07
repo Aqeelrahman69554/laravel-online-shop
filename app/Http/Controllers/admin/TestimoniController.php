@@ -22,7 +22,7 @@ class TestimoniController extends Controller
             'testimoni_status' => 'required|string|max:255',
             'testimoni_desc' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
-            'testimoni_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'testimoni_image' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
         ]);
 
         $imagePath = $request->file('testimoni_image')->store('testimoni', 'public');

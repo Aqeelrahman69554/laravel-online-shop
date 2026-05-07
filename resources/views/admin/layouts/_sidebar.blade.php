@@ -20,7 +20,7 @@
             <a href="{{ route('admin.dashboard') }}" class="logo">
                 <img src="{{ asset('admin2/assets/img/kaiadmin/logoaqeel.png') }}" alt="navbar brand" class="navbar-brand"
                     style="height: 50px !important; width: auto; object-fit: contain;" />
-                    <span class="text-white fw-bold ms-2" style="font-size: 1.2rem;">TOBUKEL</span>
+                <span class="text-white fw-bold ms-2" style="font-size: 1.2rem;">TOBUKEL</span>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -65,6 +65,11 @@
                                     <span class="sub-item">Service</span>
                                 </a>
                             </li>
+                            <li class="{{ Request::is('admin/testimoni*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.testimoni') }}">
+                                    <span class="sub-item">Testimoni</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -104,12 +109,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('admin/testimoni*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.testimoni') }}">
-                        <i class="fas fa-comments"></i>
-                        <p>Testimoni</p>
-                    </a>
-                </li>
+
 
             </ul>
         </div>

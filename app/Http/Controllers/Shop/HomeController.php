@@ -14,6 +14,8 @@ class HomeController extends Controller
         $sliders = DB::table('home')->get();
         $services = DB::table('service')->get();
         $categories = DB::table('categories')->get();
+        $statistics = DB::table('site_statistic')->get();
+        $testimoni = DB::table('testimoni')->get();
 
         // 🔥 kalau pilih kategori
         if ($request->category) {
@@ -38,7 +40,7 @@ class HomeController extends Controller
             $books = $books->take(8);
         }
 
-        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories'));
+        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories','statistics', 'testimoni'));
     }
 
     public function detail($id)
