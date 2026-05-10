@@ -1,20 +1,16 @@
-
-
-
 <!-- About Start -->
 <div class="container-fluid py-5" style="margin-top:120px ">
     <div class="container py-5">
 
-        <div class="row g-5 align-items-center">
+        <div class="row g-5 align-items-start">
 
             <!-- IMAGE -->
             <div class="col-lg-6">
 
-                <div class="position-relative">
+                <div class="position-relative h-100">
 
-                    <img src="{{ asset('shop/img/about.jpeg') }}"
-                        class="img-fluid rounded shadow-sm w-100"
-                        style="height: 500px; object-fit: cover;"
+                    <img src="{{ asset('storage/images/about/' . $about->image) }}"
+                        class="img-fluid rounded shadow-sm w-100" style="height: 100%; min-height: 500px; object-fit: cover;"
                         alt="About Tobukel">
 
                 </div>
@@ -29,64 +25,43 @@
                 </span>
 
                 <h1 class="display-5 fw-bold mb-4">
-                    Toko Buku Online untuk Pembaca Modern
+                    {{ $about->title }}
                 </h1>
 
                 <p class="text-muted mb-4" style="line-height: 1.9;">
-                    TOBUKEL adalah platform toko buku online yang menyediakan
-                    berbagai koleksi buku pilihan mulai dari novel,
-                    sains & teknologi, agama, hingga ilmu perpustakaan.
-                </p>
-
-                <p class="text-muted mb-4" style="line-height: 1.9;">
-                    Kami percaya bahwa membaca adalah investasi terbaik
-                    untuk masa depan. Karena itu kami berusaha menghadirkan
-                    pengalaman belanja buku yang mudah, nyaman, dan modern.
+                    {!! nl2br(e($about->description)) !!}
                 </p>
 
                 <!-- FEATURES -->
-                <div class="row g-3 mb-4">
+                <div class="row g-4 mb-4">
 
-                    <div class="col-md-6">
-                        <div class="border rounded p-3 h-100">
+                    @foreach ($features as $feature)
+                        <div class="col-md-6">
 
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fa fa-book text-primary me-3 fa-2x"></i>
+                            <div class="border rounded p-4 h-100 shadow-sm">
 
-                                <h5 class="mb-0">
-                                    Koleksi Lengkap
-                                </h5>
+                                <div class="d-flex align-items-center mb-3">
+
+                                    <i class="{{ $feature->icon }} text-primary fa-2x me-3"></i>
+
+                                    <h5 class="mb-0 fw-bold">
+                                        {{ $feature->sub_feature }}
+                                    </h5>
+
+                                </div>
+
+                                <p class="text-muted mb-0">
+                                    {{ $feature->desc_feature }}
+                                </p>
+
                             </div>
 
-                            <small class="text-muted">
-                                Berbagai kategori buku untuk semua kalangan.
-                            </small>
-
                         </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="border rounded p-3 h-100">
-
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fa fa-truck text-primary me-3 fa-2x"></i>
-
-                                <h5 class="mb-0">
-                                    Akses Mudah
-                                </h5>
-                            </div>
-
-                            <small class="text-muted">
-                                Belanja buku kapan saja dan dimana saja.
-                            </small>
-
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
 
-                <a href="{{ route('shop') }}"
-                    class="btn btn-primary rounded-pill px-5 py-3">
+                <a href="{{ route('shop') }}" class="btn btn-primary rounded-pill px-5 py-3">
 
                     Jelajahi Buku
 
@@ -174,8 +149,7 @@
 <div class="container-fluid py-5">
     <div class="container">
 
-        <div class="text-center mx-auto mb-5"
-            style="max-width: 700px;">
+        <div class="text-center mx-auto mb-5" style="max-width: 700px;">
 
             <h1 class="display-5 fw-bold">
                 Visi Kami

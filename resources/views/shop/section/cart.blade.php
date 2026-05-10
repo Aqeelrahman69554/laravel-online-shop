@@ -57,46 +57,50 @@
                         <tbody>
                             @php $subtotal = 0; @endphp
                             @forelse ($carts as $item)
-                                @php
-                                    $itemTotal = $item->book->price * $item->quantity;
-                                    $subtotal += $itemTotal;
-                                @endphp
-                                <tr>
-                                    <th scope="row" class="py-4">
-                                        <img src="{{ asset('storage/' . $item->book->books_images) }}"
-                                            class="img-fluid rounded-3 shadow-sm"
-                                            style="width: 70px; height: 90px; object-fit: cover;"
-                                            alt="{{ $item->book->books_name }}">
-                                    </th>
-                                    <td>
-                                        <h6 class="mb-0 fw-bold text-dark">{{ $item->book->books_name }}</h6>
-                                        <small class="text-muted">Buku Fisik</small>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 text-dark">Rp
-                                            {{ number_format($item->book->price, 0, ',', '.') }}</p>
-                                    </td>
-                                    <td>
-                                        <div class="input-group quantity" style="width: 100px;">
-                                            <input type="text"
-                                                class="form-control form-control-sm text-center border shadow-none bg-light rounded-pill"
-                                                value="{{ $item->quantity }}">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 fw-bold text-primary">Rp
-                                            {{ number_format($itemTotal, 0, ',', '.') }}</p>
-                                    </td>
-                                    <td class="text-end">
-                                        <form action="{{ route('cart.remove', $item->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit"
-                                                class="btn btn-sm btn-outline-danger rounded-circle border-0 p-2 shadow-sm">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                @if ($item->book)
+                                    @php
+                                        $itemTotal = ($item->book->price ?? 0) * $item->quantity;
+                                        $subtotal += $itemTotal;
+                                    @endphp
+                                    <tr>
+                                        <th scope="row" class="py-4">
+                                            <img src="{{ asset('storage/' . $item->book->books_images) }}"
+                                                class="img-fluid rounded-3 shadow-sm"
+                                                style="width: 70px; height: 90px; object-fit: cover;"
+                                                alt="{{ $item->book->books_name }}">
+                                        </th>
+                                        <td>
+                                            <h6 class="mb-0 fw-bold text-dark">{{ $item->book->books_name }}</h6>
+                                            <small class="text-muted">Buku Fisik</small>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 text-dark">Rp
+                                                {{ number_format($item->book->price, 0, ',', '.') }}</p>
+                                        </td>
+                                        <td>
+                                            <div class="input-group quantity" style="width: 100px;">
+                                                <input type="text"
+                                                    class="form-control form-control-sm text-center border shadow-none bg-light rounded-pill"
+                                                    value="{{ $item->quantity }}">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 fw-bold text-primary">Rp
+                                                {{ number_format($itemTotal, 0, ',', '.') }}</p>
+                                        </td>
+                                        <td class="text-end">
+                                            <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-sm btn-outline-danger rounded-circle border-0 p-2 shadow-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
+
                             @empty
                                 <tr>
                                     <td colspan="6" class="text-center py-5">

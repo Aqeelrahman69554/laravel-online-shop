@@ -10,11 +10,12 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SiteStatisticController;
 use App\Http\Controllers\Admin\TestimoniController;
-
+use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\admin\AboutFeatureController;
 use App\Http\Controllers\Auth\LoginController;
-
 // URL SHOP
 use App\Http\Controllers\Shop\HomeController as ShopHomeController;
+use App\Http\Controllers\shop\AboutController as ShopAboutController;
 use App\Http\Controllers\Shop\CartController;
 
 
@@ -63,6 +64,15 @@ Route::middleware('auth')->group(function () {
         Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
         Route::delete('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('admin.service.delete');
 
+        //Route Fitur About
+        Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
+        Route::put('/admin/about/update/{id}', [AboutController::class, 'update'])->name('admin.about.update');
+
+        //Route Fitur About Feature
+        Route::post('/about/feature/store', [AboutFeatureController::class, 'store'])->name('admin.about-feature.store');
+        Route::delete('/about/feature/delete/{id}', [AboutFeatureController::class, 'destroy'])->name('admin.about-feature.delete');
+        Route::put('/admin/about-feature/update/{id}',[AboutFeatureController::class, 'update'])->name('admin.about-feature.update');
+
         //Route Fitur Book
         Route::get('/books', [BooksController::class, 'index'])->name('admin.books');
         Route::post('/books/store', [BooksController::class, 'store'])->name('admin.books.store');
@@ -108,9 +118,8 @@ Route::middleware('auth')->group(function () {
 // --- PENGUNJUNG (Public) ---
 Route::get('/', [ShopHomeController::class, 'index'])->name('home');
 
-Route::get('/about', function () {
-    return view('shop.pages.about');
-})->name('about');
+//About Pengunjung
+Route::get('/about', [ShopAboutController::class, 'index'])->name('about');
 
 
 Route::get('/shopdetail/{id}', [ShopHomeController::class, 'detail'])->name('shopdetail');

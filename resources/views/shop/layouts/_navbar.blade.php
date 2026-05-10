@@ -2,7 +2,7 @@
     $totalQty = 0;
     if (auth()->check()) {
         // Hitung total quantity dari tabel cart untuk user ini
-        $totalQty = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
+        $totalQty = \App\Models\Cart::where('user_id', auth()->id())->whereHas('book')->sum('quantity');
     }
 @endphp
 <!-- Navbar start -->

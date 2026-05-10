@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('about', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
             $table->string('title');
             $table->text('description');
-            $table->string('image')->nullable();
-            $table->string('vision_title')->nullable();
-            $table->text('vision_description')->nullable();
-            $table->string('vision_icon')->nullable();
             $table->timestamps();
         });
     }

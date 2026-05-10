@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Book extends Model
 {
+    protected $table = 'books';
     protected $fillable = [
         'category_id',
         'books_images',

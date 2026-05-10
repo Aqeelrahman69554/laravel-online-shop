@@ -70,6 +70,11 @@
                                     <span class="sub-item">Testimoni</span>
                                 </a>
                             </li>
+                            <li class="{{ Request::is('admin/testimoni*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.about') }}">
+                                    <span class="sub-item">About</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

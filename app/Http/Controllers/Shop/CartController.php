@@ -14,7 +14,10 @@ class CartController extends Controller
     public function index()
     {
         // Mengambil data cart milik user yang sedang login beserta data bukunya
-        $carts = Cart::with('book')->where('user_id', Auth::id())->get();
+        $carts = Cart::with('book')
+            ->where('user_id', Auth::id())
+            ->whereHas('book')
+            ->get();
 
         return view('shop.pages.cart', compact('carts'));
     }
