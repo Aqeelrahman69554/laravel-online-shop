@@ -8,37 +8,54 @@
                 </div>
                 <div class="col-lg-6">
 
-                    <div class="category-scroll">
+                    <div class="category-wrapper">
 
-                        <ul class="nav nav-pills flex-nowrap mb-5">
+                        <!-- BUTTON LEFT -->
+                        <button class="scroll-btn left-btn">
+                            <i class="fa fa-chevron-left"></i>
+                        </button>
 
-                            {{-- ALL --}}
-                            <li class="nav-item flex-shrink-0">
-                                <a href="javascript:void(0)" data-id="all"
-                                    class="category-btn d-flex m-2 py-2 rounded-pill {{ request('category') == null ? 'bg-primary text-white' : 'bg-light text-dark' }}">
+                        <!-- CATEGORY SCROLL -->
+                        <div class="category-scroll">
 
-                                    <span class="px-4">All</span>
+                            <ul class="nav nav-pills flex-nowrap mb-5">
 
-                                </a>
-                            </li>
-
-                            {{-- LOOP CATEGORY --}}
-                            @foreach ($categories as $cat)
+                                {{-- ALL --}}
                                 <li class="nav-item flex-shrink-0">
 
-                                    <a href="javascript:void(0)" data-id="{{ $cat->id }}"
-                                        class="category-btn nav-link-custom d-flex m-2 py-2 rounded-pill {{ request('category') == $cat->id ? 'bg-primary text-white' : 'bg-light text-dark' }}">
+                                    <a href="javascript:void(0)" data-id="all"
+                                        class="category-btn d-flex m-2 py-2 rounded-pill {{ request('category') == null ? 'bg-primary text-white' : 'bg-light text-dark' }}">
 
-                                        <span class="px-4">
-                                            {{ $cat->name }}
-                                        </span>
+                                        <span class="px-4">All</span>
 
                                     </a>
 
                                 </li>
-                            @endforeach
 
-                        </ul>
+                                {{-- LOOP CATEGORY --}}
+                                @foreach ($categories as $cat)
+                                    <li class="nav-item flex-shrink-0">
+
+                                        <a href="javascript:void(0)" data-id="{{ $cat->id }}"
+                                            class="category-btn nav-link-custom d-flex m-2 py-2 rounded-pill {{ request('category') == $cat->id ? 'bg-primary text-white' : 'bg-light text-dark' }}">
+
+                                            <span class="px-4">
+                                                {{ $cat->name }}
+                                            </span>
+
+                                        </a>
+
+                                    </li>
+                                @endforeach
+
+                            </ul>
+
+                        </div>
+
+                        <!-- BUTTON RIGHT -->
+                        <button class="scroll-btn right-btn">
+                            <i class="fa fa-chevron-right"></i>
+                        </button>
 
                     </div>
 
@@ -59,3 +76,27 @@
     </div>
 </div>
 <!-- Fruits Shop End-->
+
+<script>
+    const categoryScroll = document.querySelector(".category-scroll");
+
+    document.querySelector(".right-btn")
+        .addEventListener("click", () => {
+
+            categoryScroll.scrollBy({
+                left: 250,
+                behavior: "smooth"
+            });
+
+        });
+
+    document.querySelector(".left-btn")
+        .addEventListener("click", () => {
+
+            categoryScroll.scrollBy({
+                left: -250,
+                behavior: "smooth"
+            });
+
+        });
+</script>

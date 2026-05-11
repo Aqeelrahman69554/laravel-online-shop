@@ -22,7 +22,7 @@ class HomeController extends Controller
         if ($request->category) {
             $books = DB::table('books')
                 ->where('category_id', $request->category)
-                ->paginate(8);
+                ->paginate(4);
         } else {
             // 🔥 ALL (ambil 2 buku per kategori)
             $books = collect();
@@ -38,7 +38,7 @@ class HomeController extends Controller
             }
 
             // 🔥 batasi total 8
-            $books = $books->take(8);
+            $books = $books->take(4);
         }
 
         return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories', 'statistics', 'testimoni'));
@@ -63,10 +63,10 @@ class HomeController extends Controller
     {
         if ($id) {
 
-            $books = Book::where('category_id', $id)->get();
+            $books = Book::where('category_id', $id)->limit(4)->get();
         } else {
 
-            $books = Book::all();
+            $books = Book::limit(4)->get();
         }
 
         return view('shop.partials.product-list', compact('books'));
