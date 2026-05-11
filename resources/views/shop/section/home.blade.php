@@ -27,14 +27,9 @@
                 <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
                     <div class="carousel-inner" role="listbox">
                         @if (isset($sliders) && $sliders->count() > 1)
-                            @foreach ($sliders as $slider)
-                                {{-- 1. KECUALIKAN ID 1 --}}
-                                @if ($slider->id == 1)
-                                    @continue
-                                @endif
-
+                            @foreach ($sliders->where('id', '!=', 1)->values() as $slider)
                                 {{-- 2. Berikan class 'active' pada slider pertama (ID 2) --}}
-                                <div class="carousel-item {{ $slider->id == 2 ? 'active' : '' }} rounded">
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }} rounded">
                                     <img src="{{ asset('storage/' . $slider->home_image) }}"
                                         class="img-fluid w-100 h-100 bg-secondary rounded"
                                         alt="{{ $slider->home_title }}">
