@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
         //Route Fitur About Feature
         Route::post('/about/feature/store', [AboutFeatureController::class, 'store'])->name('admin.about-feature.store');
         Route::delete('/about/feature/delete/{id}', [AboutFeatureController::class, 'destroy'])->name('admin.about-feature.delete');
-        Route::put('/admin/about-feature/update/{id}',[AboutFeatureController::class, 'update'])->name('admin.about-feature.update');
+        Route::put('/admin/about-feature/update/{id}', [AboutFeatureController::class, 'update'])->name('admin.about-feature.update');
 
         //Route Fitur Book
         Route::get('/books', [BooksController::class, 'index'])->name('admin.books');
@@ -126,3 +126,5 @@ Route::get('/shopdetail/{id}', [ShopHomeController::class, 'detail'])->name('sho
 
 
 Route::get('tobukel/shop', [ShopHomeController::class, 'index'])->name('shop');
+Route::get('tobukel/shop/filter/{id?}', [ShopHomeController::class, 'filter'])
+    ->name('shop.filter');

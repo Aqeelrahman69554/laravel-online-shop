@@ -1,10 +1,8 @@
-
 html {
     scroll-behavior: smooth;
 }
 #produk {
     scroll-margin-top: 120px;
-
 }
 /* ===============================
    THEME TOBUKEL (IMPROVED BROWN)
@@ -593,14 +591,13 @@ h3 {
     border-radius: 12px;
     overflow: hidden;
 
-     transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .fruite-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
-
 
 .fruite-item:hover img {
     transform: scale(1.05);
@@ -641,7 +638,7 @@ h3 {
 ========================= */
 
 .footer {
-    background: linear-gradient(135deg, #4E342E, #6D4C41);
+    background: linear-gradient(135deg, #4e342e, #6d4c41);
     color: #f5e6d3;
 }
 
@@ -663,37 +660,37 @@ h3 {
 }
 
 .footer a:hover {
-    color: #FFD180;
+    color: #ffd180;
     padding-left: 5px;
 }
 
 .footer .btn {
-    border: 2px solid #FFD180;
-    color: #FFD180;
+    border: 2px solid #ffd180;
+    color: #ffd180;
     transition: 0.3s;
 }
 
 .footer .btn:hover {
-    background-color: #FFD180;
-    color: #4E342E;
+    background-color: #ffd180;
+    color: #4e342e;
 }
 
 .footer .btn-outline-light {
-    border-color: rgba(255,255,255,0.5);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .footer .btn-outline-light:hover {
-    background-color: #FFD180;
-    border-color: #FFD180;
-    color: #4E342E !important;
+    background-color: #ffd180;
+    border-color: #ffd180;
+    color: #4e342e !important;
 }
 
 .footer .border-secondary {
-    border-color: rgba(255,255,255,0.15) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .footer .text-primary {
-    color: #FFD180 !important;
+    color: #ffd180 !important;
 }
 
 .footer .text-secondary {
@@ -714,18 +711,26 @@ h3 {
 }
 
 .footer .copyright-text span {
-    color: #FFD180;
+    color: #ffd180;
     font-weight: 700;
 }
 
 .category-scroll {
     overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
     scrollbar-width: none;
-    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
 }
 
 .category-scroll::-webkit-scrollbar {
     display: none;
+}
+
+/* BIAR TIDAK MENGECIL */
+.category-scroll .nav-item {
+    flex: 0 0 auto;
 }
 
 /* BUTTON */
@@ -759,4 +764,32 @@ h3 {
 .nav-pills span {
     font-size: 14px;
     letter-spacing: 0.3px;
+}
+
+/* ANIMASI PRODUK */
+#product-list {
+    transition: all 0.3s ease;
+}
+
+/* SAAT LOADING */
+.product-loading {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* SAAT MUNCUL */
+.product-show {
+    animation: fadeProduct 0.4s ease;
+}
+
+@keyframes fadeProduct {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

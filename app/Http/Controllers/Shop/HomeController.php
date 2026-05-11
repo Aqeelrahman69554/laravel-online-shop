@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Book;
 
 
 class HomeController extends Controller
@@ -40,21 +41,34 @@ class HomeController extends Controller
             $books = $books->take(8);
         }
 
-        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories','statistics', 'testimoni'));
+        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories', 'statistics', 'testimoni'));
     }
 
     public function detail($id)
     {
         $book = DB::table('books')
-        ->join('categories','books.category_id', '=', 'categories.id')
-        ->select('books.*', 'categories.name as category_name')
-        ->where('books.id',$id)
-        ->first();
+            ->join('categories', 'books.category_id', '=', 'categories.id')
+            ->select('books.*', 'categories.name as category_name')
+            ->where('books.id', $id)
+            ->first();
 
         if (!$book) {
             abort(404);
         }
 
         return view('shop.pages.shopdetail', compact('book'));
+    }
+
+    public function filter($id = null)
+    {
+        if ($id) {
+
+            $books = Book::where('category_id', $id)->get();
+        } else {
+
+            $books = Book::all();
+        }
+
+        return view('shop.partials.product-list', compact('books'));
     }
 }

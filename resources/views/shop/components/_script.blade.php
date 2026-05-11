@@ -46,3 +46,75 @@
     });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const buttons = document.querySelectorAll(".category-btn");
+
+    buttons.forEach(button => {
+
+        button.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+            let categoryId = this.dataset.id;
+
+            let url = "";
+
+            if (categoryId === "all") {
+
+                url = "/tobukel/shop/filter";
+
+            } else {
+
+                url = "/tobukel/shop/filter/" + categoryId;
+
+            }
+
+            const productList = document.getElementById("product-list");
+
+            productList.classList.add("product-loading");
+
+            fetch(url)
+
+                .then(response => response.text())
+
+                .then(data => {
+
+                    setTimeout(() => {
+
+                        productList.innerHTML = data;
+
+                        productList.classList.remove("product-loading");
+
+                        productList.classList.add("product-show");
+
+                        setTimeout(() => {
+
+                            productList.classList.remove("product-show");
+
+                        }, 400);
+
+                    }, 200);
+
+                    // ACTIVE BUTTON
+                    buttons.forEach(btn => {
+
+                        btn.classList.remove("bg-primary", "text-white");
+
+                        btn.classList.add("bg-light", "text-dark");
+
+                    });
+
+                    this.classList.remove("bg-light", "text-dark");
+
+                    this.classList.add("bg-primary", "text-white");
+
+                });
+
+        });
+
+    });
+
+});
+</script>
