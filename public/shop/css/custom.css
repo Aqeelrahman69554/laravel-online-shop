@@ -717,3 +717,46 @@ h3 {
     color: #FFD180;
     font-weight: 700;
 }
+
+.category-scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+}
+
+.category-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* BUTTON */
+.nav-pills .nav-item a {
+    transition: all 0.3s ease;
+    border: 1.5px solid #c7b299;
+    background: #fff;
+    color: #6b4a36 !important;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* HOVER */
+.nav-pills .nav-item a:hover {
+    transform: translateY(-3px);
+    background: #8b5e3c !important;
+    color: white !important;
+    border-color: #8b5e3c;
+    box-shadow: 0 8px 20px rgba(139, 94, 60, 0.25);
+}
+
+/* ACTIVE */
+.nav-pills .bg-primary {
+    background: #8b5e3c !important;
+    border: 1.5px solid #8b5e3c !important;
+    color: white !important;
+    box-shadow: 0 8px 20px rgba(139, 94, 60, 0.25);
+}
+
+/* TEXT */
+.nav-pills span {
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}

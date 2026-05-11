@@ -6,30 +6,45 @@
                 <div class="col-lg-6 text-start">
                     <h1>Koleksi buku populer</h1>
                 </div>
-                <div class="col-lg-6 text-end">
-                    <ul class="nav nav-pills d-inline-flex text-center mb-5">
-                        {{-- ALL --}}
-                        <li class="nav-item">
-                            <a href="{{ route('shop') }}#produk"
-                                class="d-flex m-2 py-2 rounded-pill {{ request('category') == null ? 'bg-primary text-white' : 'bg-light text-dark' }}">
-                                <span style="width: 130px;">All</span>
-                            </a>
-                        </li>
+               <div class="col-lg-6">
 
-                        {{-- LOOP CATEGORY --}}
-                        @foreach ($categories as $cat)
-                            <li class="nav-item">
-                                <a href="{{ route('shop', ['category' => $cat->id]) }}#produk"
-                                    class="d-flex m-2 py-2 rounded-pill {{ request('category') == $cat->id ? 'bg-primary text-white' : 'bg-light text-dark' }}">
-                                    <span style="width: 130px;">
-                                        {{ $cat->name }}
-                                    </span>
-                                </a>
-                            </li>
-                        @endforeach
+    <div class="category-scroll">
 
-                    </ul>
-                </div>
+        <ul class="nav nav-pills flex-nowrap mb-5">
+
+            {{-- ALL --}}
+            <li class="nav-item flex-shrink-0">
+                <a href="{{ route('shop') }}#produk"
+                    class="d-flex m-2 py-2 rounded-pill {{ request('category') == null ? 'bg-primary text-white' : 'bg-light text-dark' }}">
+
+                    <span class="px-4">All</span>
+
+                </a>
+            </li>
+
+            {{-- LOOP CATEGORY --}}
+            @foreach ($categories as $cat)
+
+                <li class="nav-item flex-shrink-0">
+
+                    <a href="{{ route('shop', ['category' => $cat->id]) }}#produk"
+                        class="nav-link-custom d-flex m-2 py-2 rounded-pill {{ request('category') == $cat->id ? 'bg-primary text-white' : 'bg-light text-dark' }}">
+
+                        <span class="px-4">
+                            {{ $cat->name }}
+                        </span>
+
+                    </a>
+
+                </li>
+
+            @endforeach
+
+        </ul>
+
+    </div>
+
+</div>
             </div>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
