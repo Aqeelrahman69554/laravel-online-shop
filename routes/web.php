@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Shop\HomeController as ShopHomeController;
 use App\Http\Controllers\shop\AboutController as ShopAboutController;
 use App\Http\Controllers\Shop\CartController;
+use App\Http\Controllers\Shop\ShopController;
 
 
 // --- Bagian Admin Proyek Kamu ---
@@ -136,6 +137,6 @@ Route::get('/about', [ShopAboutController::class, 'index'])->name('about');
 Route::get('/shopdetail/{id}', [ShopHomeController::class, 'detail'])->name('shopdetail');
 
 
-Route::get('tobukel/shop', [ShopHomeController::class, 'index'])->name('shop');
+Route::get('tobukel/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('tobukel/shop/filter/{id?}', [ShopHomeController::class, 'filter'])
     ->name('shop.filter');

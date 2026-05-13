@@ -37,239 +37,93 @@
             <h1 class="mb-4">Fresh fruits shop</h1>
             <div class="row g-4">
                 <div class="col-lg-12">
-                    <div class="row g-4">
-                        <div class="col-xl-3">
-                            <div class="input-group w-100 mx-auto d-flex">
-                                <input type="search" class="form-control p-3" placeholder="keywords"
-                                    aria-describedby="search-icon-1">
-                                <span id="search-icon-1" class="input-group-text p-3"><i
-                                        class="fa fa-search"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-6"></div>
-                        <div class="col-xl-3">
-                            <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                <label for="fruits">Default Sorting:</label>
-                                <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3"
-                                    form="fruitform">
-                                    <option value="volvo">Nothing</option>
-                                    <option value="saab">Popularity</option>
-                                    <option value="opel">Organic</option>
-                                    <option value="audi">Fantastic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-lg-3">
-                            <div class="row g-4">
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <h4>Categories</h4>
-                                        <ul class="list-unstyled fruite-categorie">
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
-                                                    <span>(3)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
-                                                    <span>(5)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i
-                                                            class="fas fa-apple-alt me-2"></i>Strawbery</a>
-                                                    <span>(2)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
-                                                    <span>(8)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
-                                                    <span>(5)</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <h4 class="mb-2">Price</h4>
-                                        <input type="range" class="form-range w-100" id="rangeInput"
-                                            name="rangeInput" min="0" max="500" value="0"
-                                            oninput="amount.value=rangeInput.value">
-                                        <output id="amount" name="amount" min-velue="0" max-value="500"
-                                            for="rangeInput">0</output>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <h4>Additional</h4>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-1"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-1"> Organic</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-2"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-2"> Fresh</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-3"> Sales</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-4"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-4"> Discount</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-5"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-5"> Expired</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h4 class="mb-3">Featured products</h4>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-1.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-2.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-3.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-center my-4">
-                                        <a href="#"
-                                            class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew
-                                            More</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="position-relative banner-wrapper">
-                                        <img src="{{ asset('shop/img/tobukel_1.png') }}"
-                                            class="img-fluid w-100 rounded banner-img" alt="">
-                                        <div class="position-absolute"
-                                            style="top: 50%; right: 10px; transform: translateY(-50%);">
+                    <!-- Top Filter -->
+                    <div class="row mb-5 align-items-center g-3">
 
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- Search -->
+                        <div class="col-lg-4">
+                            <div class="input-group">
+                                <input type="search" class="form-control py-3 border-0 shadow-sm"
+                                    placeholder="Cari buku...">
+                                <span class="input-group-text bg-white border-0 shadow-sm">
+                                    <i class="fa fa-search text-secondary"></i>
+                                </span>
                             </div>
                         </div>
-                        <div class="col-lg-9">
+
+                        <!-- Categories -->
+                        <div class="col-lg-5">
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="{{ route('shop') }}"
+                                    class="btn btn-sm rounded-pill px-4 {{ request('category') ? 'btn-light' : 'btn-success text-white' }}">
+
+                                    Semua
+
+                                </a>
+                                @foreach ($categories as $category)
+                                    <a href="{{ route('shop', ['category' => $category->id]) }}"
+                                        class="btn btn-sm rounded-pill px-4 {{ request('category') == $category->id ? 'btn-success text-white' : 'btn-light' }}">
+
+                                        {{ $category->name }}
+
+                                    </a>
+                                @endforeach
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- Product Grid -->
+                    <div class="row g-4 justify-content-center">
+
+                        <div class="col-lg-12">
                             <div class="row g-4 justify-content-center">
-                                <div class="col-md-6 col-lg-6 col-xl-4">
-                                    <a href="{{ route('shopdetail') }}">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te
-                                                    incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
+                                @foreach ($books as $book)
+                                    <div class="col-6 col-md-4 col-lg-3">
+                                        <a href="{{ route('shopdetail', $book->id) }}">
+                                            <div class="rounded-4 overflow-hidden shadow-sm h-100 product-card">
+                                                <div class="fruite-img">
+                                                    <img src="{{ asset('storage/' . $book->books_images) }}"
+                                                        class="img-fluid w-100" alt="{{ $book->books_name }}">
+
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                    style="top: 10px; left: 10px;">Fruits</div>
+                                                <div class="p-3 bg-white">
+
+                                                    <!-- Category -->
+                                                    <span class="badge bg-light text-dark mb-2 px-3 py-2 rounded-pill">
+                                                        Buku
+                                                    </span>
+
+                                                    <!-- Title -->
+                                                    <h5 class="fw-semibold mb-2 product-title">
+                                                        {{ $book->books_name }}
+                                                    </h5>
+
+                                                    <!-- Price -->
+                                                    <div class="d-flex justify-content-between align-items-center mt-3">
+
+                                                        <h5 class="text-primary fw-bold mb-0">
+                                                            Rp {{ number_format($book->price, 0, ',', '.') }}
+                                                        </h5>
+
+                                                        <a href="#" class="btn btn-sm rounded-circle cart-btn">
+                                                            <i class="fa fa-shopping-bag"></i>
+                                                        </a>
+
+                                                    </div>
+
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-4">
-                                    <a href="{{ route('shopdetail') }}">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te
-                                                    incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+
+
 
 
                                 <div class="col-12">

@@ -848,3 +848,97 @@ h3 {
     object-fit: contain;
 }
 
+
+/* shop */
+.product-card {
+    transition: 0.3s ease;
+    background: #fff;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #777;
+}
+
+.btn-light.active {
+    background-color: #8b5e3c !important;
+    color: #fff !important;
+    border: none;
+}
+
+.fruite-item,
+.product-card {
+    height: 100%;
+}
+
+.product-card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.product-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .3s ease;
+    height: 100%;
+    border: 1px solid #eee;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.product-card img {
+    height: 220px;
+    object-fit: cover;
+    transition: .3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.04);
+}
+
+.product-title {
+    font-size: 16px;
+    line-height: 1.4;
+    height: 45px;
+    overflow: hidden;
+}
+
+.cart-btn {
+    width: 42px;
+    height: 42px;
+    background: #8b5e3c !important;
+       color: #fff !important;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-btn:hover {
+    background: #6f4a30 !important;
+    color: #fff !important;
+}
+
+.badge {
+    font-weight: 500;
+    font-size: 12px;
+}
