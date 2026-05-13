@@ -2,7 +2,9 @@
     $totalQty = 0;
     if (auth()->check()) {
         // Hitung total quantity dari tabel cart untuk user ini
-        $totalQty = \App\Models\Cart::where('user_id', auth()->id())->whereHas('book')->sum('quantity');
+        $totalQty = \App\Models\Cart::where('user_id', auth()->id())
+            ->whereHas('book')
+            ->sum('quantity');
     }
 @endphp
 <!-- Navbar start -->
@@ -24,9 +26,11 @@
     </div>
     <div class="container px-0">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="{{ route('home') }}" class="navbar-brand">
-                <h1 class="text-primary display-6">TOBUKEL</h1>
+            <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
+                <img src="{{ asset('shop/img/favicon-pengunjung.png') }}" alt="Logo TOBUKEL" class="navbar-logo me-2">
+                <h1 class="text-primary display-6 mb-0">TOBUKEL</h1>
             </a>
+
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars text-primary"></span>

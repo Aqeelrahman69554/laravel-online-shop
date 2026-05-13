@@ -839,3 +839,12 @@ h3 {
     }
 
 }
+
+
+/* navbar logo */
+.navbar-logo {
+    width: 95px;
+    height: 95px;
+    object-fit: contain;
+}
+

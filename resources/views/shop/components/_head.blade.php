@@ -22,6 +22,10 @@
     <link href="{{ asset('shop/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('shop/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
+    {{-- Favicon --}}
+    <link rel="icon" type="image/png" href="{{ asset('shop/img/favicon-pengunjung.png') }}">
+
+
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('shop/css/bootstrap.min.css') }}" rel="stylesheet">
