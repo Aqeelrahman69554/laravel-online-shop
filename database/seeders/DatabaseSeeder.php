@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             SiteStatisticSeeder::class,
             TestimoniSeeder::class,
             ServiceSeeder::class,
+            Service2Seeder::class,
             AboutSeeder::class,
         ]);
     }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\Service2Controller;
 use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
@@ -64,6 +65,12 @@ Route::middleware('auth')->group(function () {
         Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
         Route::delete('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('admin.service.delete');
 
+        //Route Service2
+        Route::get('/service2', [Service2Controller::class, 'index'])->name('admin.service2');
+        Route::post('/service2/store', [Service2Controller::class, 'store'])->name('admin.service2.store');
+        Route::put('/service2/update/{id}', [Service2Controller::class, 'update'])->name('admin.service2.update');
+        Route::delete('/service2/delete/{id}', [Service2Controller::class, 'destroy'])->name('admin.service2.delete');
+
         //Route Fitur About
         Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
         Route::put('/admin/about/update/{id}', [AboutController::class, 'update'])->name('admin.about.update');
@@ -117,6 +124,10 @@ Route::middleware('auth')->group(function () {
 
 // --- PENGUNJUNG (Public) ---
 Route::get('/', [ShopHomeController::class, 'index'])->name('home');
+
+//Service Pengunjung
+Route::get('/service2', [ShopHomeController::class, 'service2'])->name('service2');
+
 
 //About Pengunjung
 Route::get('/about', [ShopAboutController::class, 'index'])->name('about');

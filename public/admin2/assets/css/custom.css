@@ -1,121 +1,149 @@
-/* =========================
-   GLOBAL
-========================= */
-body {
-    background-color: #FAFAFA;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-.navbar-header {
-    background-color: #F5E6D3 !important;
-    border-bottom: 1px solid #e5d3bd;
-}
-
-.navbar-header i,
-.navbar-header .nav-link,
-.navbar-header .profile-username {
-    color: #5a3e2b !important;
-}
-
-.navbar-header i:hover {
-    color: #8B5E3C !important;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
+/* ========================================
+   SIDEBAR PREMIUM
+======================================== */
 .sidebar[data-background-color="dark"] {
-    background: linear-gradient(180deg, #8B5E3C, #6F4A2D) !important;
+    background: linear-gradient(
+        180deg,
+        #7b5232 0%,
+        #5e3d25 100%
+    ) !important;
 }
 
-/* =========================
+/* ========================================
    LOGO HEADER
-========================= */
+======================================== */
 .logo-header[data-background-color="dark"] {
-    background: linear-gradient(180deg, #8B5E3C, #6F4A2D) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* =========================
-   TEXT & ICON
-========================= */
-.sidebar .nav-item a,
+/* ========================================
+   MAIN MENU
+======================================== */
+.sidebar .nav-item {
+    margin: 6px 12px;
+}
+
+.sidebar .nav-item > a {
+    color: rgba(255,255,255,0.88) !important;
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: all .2s ease;
+}
+
+/* ========================================
+   MAIN MENU HOVER
+======================================== */
+.sidebar .nav-item > a:hover {
+    background-color: rgba(255,255,255,0.08);
+    transform: translateX(2px);
+}
+
+/* ========================================
+   MAIN MENU ACTIVE
+======================================== */
+.sidebar .nav-item.active > a {
+    background: linear-gradient(
+        90deg,
+        #d2a679,
+        #b07a50
+    ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* ========================================
+   ICON
+======================================== */
 .sidebar .nav-item i {
     color: #ffffff !important;
 }
 
-/* =========================
-   MENU ITEM BASE
-========================= */
-.sidebar .nav-item {
-    margin: 4px 8px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+/* ========================================
+   SUBMENU WRAPPER
+======================================== */
+.sidebar .nav-collapse {
+    margin-top: 8px;
+    padding-left: 10px;
+    padding: 10px 8px;
+    background: rgba(35, 28, 25, 0.28);
+    border-radius: 10px;
 }
 
-/* =========================
-   HOVER
-========================= */
-.sidebar .nav-item a:hover {
-    background-color: #C89B6D;
-    border-radius: 8px;
+/* ========================================
+   SUBMENU LINK
+======================================== */
+.sidebar .nav-collapse li a {
+    color: rgba(255,255,255,0.82) !important;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    transition: all .2s ease;
 }
 
-.sidebar .nav-item a:hover i {
-    color: #ffffff !important;
-    transform: translateX(3px);
-}
+/* ========================================
+   SUBMENU HOVER
+======================================== */
+.sidebar .nav-collapse li a:hover {
+    background-color: rgba(255,255,255,0.06);
 
-/* =========================
-   ACTIVE MENU (BIAR JELAS)
-========================= */
-.sidebar .nav-item.active {
-    background: linear-gradient(90deg, #C89B6D, #A47148);
-    border-left: 4px solid #F5E6D3;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* TEXT ACTIVE */
-.sidebar .nav-item.active a {
-    color: #ffffff !important;
-    font-weight: 600;
-}
-
-/* ICON ACTIVE (HILANGKAN UNGU TOTAL) */
-.sidebar .nav-item.active i,
-.sidebar .nav-item.active .fas,
-.sidebar .nav-item.active svg {
     color: #ffffff !important;
 }
 
-/* =========================
-   SUB MENU
-========================= */
-.sidebar .nav-collapse .sub-item {
-    color: #f5e1c8 !important;
+/* ========================================
+   SUBMENU ACTIVE
+======================================== */
+/* ========================================
+   ACTIVE SUBMENU (LEBIH KONTRAS)
+======================================== */
+.sidebar .nav-collapse li.active a {
+
+    background: linear-gradient(
+        90deg,
+        #f0c99f,
+        #d59a66
+    ) !important;
+
+    color: #2f1f15 !important;
+
+    font-weight: 700;
+
+    border-left: 4px solid #fff4e6;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    transform: translateX(2px);
 }
 
-.sidebar .nav-collapse .sub-item:hover {
-    color: #ffffff !important;
+.sidebar .nav-collapse li.active a .sub-item {
+    color: #2f1f15 !important;
 }
 
-/* =========================
-   REMOVE TEMPLATE COLOR
-========================= */
-.text-primary,
-.text-primary:hover {
-    color: inherit !important;
+.sidebar .nav-collapse li.active .sub-item::before {
+    color: #2f1f15 !important;
+    opacity: 1;
 }
 
-/* =========================
-   CARD UI
-========================= */
+/* ========================================
+   SUBMENU BULLET
+======================================== */
+.sidebar .sub-item::before {
+    content: "•";
+    margin-right: 10px;
+    opacity: .5;
+}
+
+/* ========================================
+   CARD
+======================================== */
 .card {
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     border: none;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
-
-

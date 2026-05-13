@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Book;
+use App\Models\Service2;
 
 
 class HomeController extends Controller
@@ -15,7 +16,7 @@ class HomeController extends Controller
         $sliders = DB::table('home')->get();
         $services = DB::table('service')->get();
         $categories = DB::table('categories')->get();
-        $statistics = DB::table('site_statistic')->get();
+        $service2 = DB::table('service2')->get();
         $testimoni = DB::table('testimoni')->get();
 
         // 🔥 kalau pilih kategori
@@ -41,7 +42,7 @@ class HomeController extends Controller
             $books = $books->take(4);
         }
 
-        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories', 'statistics', 'testimoni'));
+        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories', 'service2', 'testimoni'));
     }
 
     public function detail($id)
