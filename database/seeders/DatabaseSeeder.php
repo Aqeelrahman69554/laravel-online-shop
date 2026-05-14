@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             Service2Seeder::class,
             AboutSeeder::class,
+            BannerSeeder::class,
+            AboutFeatureSeeder::class,
         ]);
     }
 }

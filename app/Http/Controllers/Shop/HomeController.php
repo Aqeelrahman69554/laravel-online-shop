@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Book;
 use App\Models\Service2;
+use App\Models\Banner;
 
 
 class HomeController extends Controller
@@ -18,6 +19,7 @@ class HomeController extends Controller
         $categories = DB::table('categories')->get();
         $service2 = DB::table('service2')->get();
         $testimoni = DB::table('testimoni')->get();
+        $banners = Banner::latest()->first();
 
         // 🔥 kalau pilih kategori
         if ($request->category) {
@@ -42,7 +44,7 @@ class HomeController extends Controller
             $books = $books->take(4);
         }
 
-        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories', 'service2', 'testimoni'));
+        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories', 'service2', 'testimoni','banners'));
     }
 
     public function detail($id)

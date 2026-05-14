@@ -98,6 +98,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ request()->routeIs('admin.banner*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.banner') }}">
+                        <i class="fas fa-images"></i>
+                        <p>Banner</p>
+                    </a>
+                </li>
+
 
 
             </ul>

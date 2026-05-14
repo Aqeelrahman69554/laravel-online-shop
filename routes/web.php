@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\TestimoniController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\admin\AboutFeatureController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\BannerController;
 // URL SHOP
 use App\Http\Controllers\Shop\HomeController as ShopHomeController;
 use App\Http\Controllers\shop\AboutController as ShopAboutController;
@@ -87,7 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/books/update/{id}', [BooksController::class, 'update'])->name('admin.books.update');
         Route::delete('/books/delete/{id}', [BooksController::class, 'destroy'])->name('admin.books.delete');
 
-
+        //Route Fitur Category
         Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories');
         Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
         Route::put('/categories/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
@@ -108,6 +109,12 @@ Route::middleware('auth')->group(function () {
         Route::post('/statistics/store', [SiteStatisticController::class, 'store'])->name('admin.statistics.store');
         Route::put('/statistics/update/{id}', [SiteStatisticController::class, 'update'])->name('admin.statistics.update');
         Route::delete('/statistics/delete/{id}', [SiteStatisticController::class, 'destroy'])->name('admin.statistics.delete');
+
+        //Route Banner
+        Route::get('/banner', [BannerController::class, 'index'])->name('admin.banner');
+        Route::post('/banner/store', [BannerController::class, 'store'])->name('admin.banner.store');
+        Route::put('/banner/update/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
+        Route::delete('/banner/delete/{id}', [BannerController::class, 'destroy'])->name('admin.banner.delete');
 
         //Route testimoni
         Route::get('/testimoni', [TestimoniController::class, 'index'])->name('admin.testimoni');
