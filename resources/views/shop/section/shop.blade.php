@@ -7,11 +7,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control p-3" placeholder="keywords"
+                    <form action="{{ route('shop') }}" method="GET" class="shop-search-form input-group w-75 mx-auto d-flex">
+                        @if (request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
+                        <input type="search" name="search" class="form-control p-3" placeholder="keywords"
+                            value="{{ request('search') }}"
                             aria-describedby="search-icon-1">
-                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                    </div>
+                        <button id="search-icon-1" type="submit" class="input-group-text p-3 border-0">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -34,7 +40,7 @@
     <!-- Fruits Shop Start-->
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
-            <h1 class="mb-4">Fresh fruits shop</h1>
+            <h1 class="mb-4">List Product Buku</h1>
             <div class="row g-4">
                 <div class="col-lg-12">
                     <!-- Top Filter -->
@@ -42,27 +48,33 @@
 
                         <!-- Search -->
                         <div class="col-lg-4">
-                            <div class="input-group">
-                                <input type="search" class="form-control py-3 border-0 shadow-sm"
-                                    placeholder="Cari buku...">
-                                <span class="input-group-text bg-white border-0 shadow-sm">
+                            <form action="{{ route('shop') }}" method="GET" class="shop-search-form input-group">
+                                @if (request('category'))
+                                    <input type="hidden" name="category" value="{{ request('category') }}">
+                                @endif
+                                <input id="shop-search-input" type="search" name="search"
+                                    class="form-control py-3 border-0 shadow-sm" placeholder="Cari buku..."
+                                    value="{{ request('search') }}">
+                                <button type="submit" class="input-group-text bg-white border-0 shadow-sm">
                                     <i class="fa fa-search text-secondary"></i>
-                                </span>
-                            </div>
+                                </button>
+                            </form>
                         </div>
 
                         <!-- Categories -->
                         <div class="col-lg-5">
                             <div class="d-flex flex-wrap gap-2">
                                 <a href="{{ route('shop') }}"
-                                    class="btn btn-sm rounded-pill px-4 {{ request('category') ? 'btn-light' : 'btn-success text-white' }}">
+                                    data-category=""
+                                    class="shop-category-btn btn btn-sm rounded-pill px-4 {{ request('category') ? 'btn-light' : 'btn-success text-white' }}">
 
                                     Semua
 
                                 </a>
                                 @foreach ($categories as $category)
                                     <a href="{{ route('shop', ['category' => $category->id]) }}"
-                                        class="btn btn-sm rounded-pill px-4 {{ request('category') == $category->id ? 'btn-success text-white' : 'btn-light' }}">
+                                        data-category="{{ $category->id }}"
+                                        class="shop-category-btn btn btn-sm rounded-pill px-4 {{ request('category') == $category->id ? 'btn-success text-white' : 'btn-light' }}">
 
                                         {{ $category->name }}
 
@@ -80,64 +92,8 @@
                     <div class="row g-4 justify-content-center">
 
                         <div class="col-lg-12">
-                            <div class="row g-4 justify-content-center">
-                                @foreach ($books as $book)
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="{{ route('shopdetail', $book->id) }}">
-                                            <div class="rounded-4 overflow-hidden shadow-sm h-100 product-card">
-                                                <div class="fruite-img">
-                                                    <img src="{{ asset('storage/' . $book->books_images) }}"
-                                                        class="img-fluid w-100" alt="{{ $book->books_name }}">
-
-                                                </div>
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                    style="top: 10px; left: 10px;">Fruits</div>
-                                                <div class="p-3 bg-white">
-
-                                                    <!-- Category -->
-                                                    <span class="badge bg-light text-dark mb-2 px-3 py-2 rounded-pill">
-                                                        Buku
-                                                    </span>
-
-                                                    <!-- Title -->
-                                                    <h5 class="fw-semibold mb-2 product-title">
-                                                        {{ $book->books_name }}
-                                                    </h5>
-
-                                                    <!-- Price -->
-                                                    <div class="d-flex justify-content-between align-items-center mt-3">
-
-                                                        <h5 class="text-primary fw-bold mb-0">
-                                                            Rp {{ number_format($book->price, 0, ',', '.') }}
-                                                        </h5>
-
-                                                        <a href="#" class="btn btn-sm rounded-circle cart-btn">
-                                                            <i class="fa fa-shopping-bag"></i>
-                                                        </a>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-
-
-
-
-                                <div class="col-12">
-                                    <div class="pagination d-flex justify-content-center mt-5">
-                                        <a href="#" class="rounded">&laquo;</a>
-                                        <a href="#" class="active rounded">1</a>
-                                        <a href="#" class="rounded">2</a>
-                                        <a href="#" class="rounded">3</a>
-                                        <a href="#" class="rounded">4</a>
-                                        <a href="#" class="rounded">5</a>
-                                        <a href="#" class="rounded">6</a>
-                                        <a href="#" class="rounded">&raquo;</a>
-                                    </div>
-                                </div>
+                            <div id="shop-product-list">
+                                @include('shop.partials.shop-product-list')
                             </div>
                         </div>
                     </div>
@@ -163,3 +119,117 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const productList = document.getElementById("shop-product-list");
+            const categoryButtons = document.querySelectorAll(".shop-category-btn");
+            const searchForms = document.querySelectorAll(".shop-search-form");
+
+            if (!productList || categoryButtons.length === 0) {
+                return;
+            }
+
+            function setActiveCategory(categoryId) {
+                categoryButtons.forEach(function(button) {
+                    button.classList.remove("btn-success", "text-white");
+                    button.classList.add("btn-light");
+
+                    if (button.dataset.category === categoryId) {
+                        button.classList.remove("btn-light");
+                        button.classList.add("btn-success", "text-white");
+                    }
+                });
+            }
+
+            function getActiveCategory() {
+                const activeButton = document.querySelector(".shop-category-btn.btn-success");
+
+                return activeButton ? activeButton.dataset.category : "";
+            }
+
+            function getSearchKeyword() {
+                const searchInput = document.getElementById("shop-search-input");
+
+                return searchInput ? searchInput.value.trim() : "";
+            }
+
+            function buildShopUrl(categoryId = getActiveCategory(), searchKeyword = getSearchKeyword()) {
+                const url = new URL("{{ route('shop') }}", window.location.origin);
+
+                if (categoryId) {
+                    url.searchParams.set("category", categoryId);
+                }
+
+                if (searchKeyword) {
+                    url.searchParams.set("search", searchKeyword);
+                }
+
+                return url.toString();
+            }
+
+            function loadShopProducts(url, categoryId = null) {
+                productList.classList.add("product-loading");
+
+                fetch(url, {
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                    .then(function(response) {
+                        return response.text();
+                    })
+                    .then(function(html) {
+                        setTimeout(function() {
+                            productList.innerHTML = html;
+                            productList.classList.remove("product-loading");
+                            productList.classList.add("product-show");
+
+                            if (categoryId !== null) {
+                                setActiveCategory(categoryId);
+                            }
+
+                            window.history.pushState({}, "", url);
+
+                            setTimeout(function() {
+                                productList.classList.remove("product-show");
+                            }, 400);
+                        }, 200);
+                    });
+            }
+
+            categoryButtons.forEach(function(button) {
+                button.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    loadShopProducts(buildShopUrl(this.dataset.category), this.dataset.category);
+                });
+            });
+
+            searchForms.forEach(function(form) {
+                form.addEventListener("submit", function(e) {
+                    e.preventDefault();
+
+                    const input = form.querySelector('input[name="search"]');
+                    const searchKeyword = input ? input.value.trim() : "";
+
+                    document.querySelectorAll('input[name="search"]').forEach(function(searchInput) {
+                        searchInput.value = searchKeyword;
+                    });
+
+                    loadShopProducts(buildShopUrl(getActiveCategory(), searchKeyword));
+                });
+            });
+
+            productList.addEventListener("click", function(e) {
+                const paginationLink = e.target.closest(".shop-pagination a");
+
+                if (!paginationLink || paginationLink.classList.contains("disabled") ||
+                    paginationLink.classList.contains("active")) {
+                    return;
+                }
+
+                e.preventDefault();
+                loadShopProducts(paginationLink.href);
+            });
+        });
+    </script>

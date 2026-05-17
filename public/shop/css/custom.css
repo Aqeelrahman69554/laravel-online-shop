@@ -770,7 +770,8 @@ h3 {
 }
 
 /* ANIMASI PRODUK */
-#product-list {
+#product-list,
+#shop-product-list {
     transition: all 0.3s ease;
 }
 
@@ -941,4 +942,34 @@ h3 {
 .badge {
     font-weight: 500;
     font-size: 12px;
+}
+
+.pagination a,
+.pagination span {
+    color: #5a3e2b;
+    padding: 10px 16px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    border: 1px solid #c8a27c;
+    margin: 0 4px;
+    min-width: 48px;
+    text-align: center;
+}
+
+.pagination .active {
+    background-color: #8b5e3c;
+    color: #fff;
+    border-color: #8b5e3c;
+}
+
+.pagination a:hover {
+    background-color: #8b5e3c;
+    color: #fff;
+}
+
+.pagination .disabled {
+    color: #b8aa9a;
+    cursor: not-allowed;
+    opacity: 0.65;
+    pointer-events: none;
 }
