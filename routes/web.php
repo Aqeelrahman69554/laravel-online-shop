@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
 
         //Route Contact
         Route::get('/contact', [ContactController::class, 'index'])->name('admin.contact');
+        Route::get('/contact/read/{id}', [ContactController::class, 'markAsRead'])->name('admin.contact.read');
         Route::post('/contact/reply/{id}', [ContactController::class, 'reply'])->name('admin.contact.reply');
         Route::delete('/contact/delete/{id}', [ContactController::class, 'destroy'])->name('admin.contact.delete');
 

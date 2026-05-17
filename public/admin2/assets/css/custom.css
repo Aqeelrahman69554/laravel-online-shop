@@ -147,3 +147,91 @@
     border-radius: 18px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
+
+/* ========================================
+   ADMIN MESSAGE DROPDOWN
+======================================== */
+.admin-message-toggle {
+    position: relative;
+}
+
+.messages-notif-box {
+    border: none !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(47,31,21,0.16) !important;
+}
+
+.admin-message-title {
+    background: linear-gradient(90deg, #7b5232, #b07a50);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 16px 18px !important;
+}
+
+.admin-message-title .badge {
+    background: rgba(255,255,255,0.22) !important;
+    color: #ffffff;
+    min-width: 28px;
+}
+
+.admin-message-item {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px !important;
+    border-bottom: 1px solid #f2ebe5;
+    transition: all .2s ease;
+}
+
+.admin-message-item:hover {
+    background: #fff8f1 !important;
+}
+
+.admin-message-avatar {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 50%;
+    background: #8b5e3c;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.admin-message-preview {
+    color: #6f5b4b !important;
+    margin-top: 3px;
+}
+
+.admin-message-empty {
+    padding: 28px 22px;
+    color: #6f5b4b;
+}
+
+.admin-message-empty span {
+    display: block;
+    font-size: 13px;
+    margin-top: 6px;
+    color: #9a8677;
+}
+
+.admin-message-empty-icon {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: #f5f1e9;
+    color: #8b5e3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.admin-message-footer {
+    color: #7b5232 !important;
+    font-weight: 700;
+}

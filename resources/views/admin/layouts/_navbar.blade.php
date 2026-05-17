@@ -1,7 +1,7 @@
 <!-- Navbar Header -->
 @php
-    $contactMessages = \App\Models\Contact::latest()->limit(4)->get();
-    $contactMessageCount = \App\Models\Contact::count();
+    $contactMessages = \App\Models\Contact::whereNull('read_at')->latest()->limit(4)->get();
+    $contactMessageCount = \App\Models\Contact::whereNull('read_at')->count();
 @endphp
 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
     <div class="container-fluid">
@@ -31,7 +31,7 @@
                 </ul>
             </li>
             <li class="nav-item topbar-icon dropdown hidden-caret">
-                <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
+                <a class="nav-link dropdown-toggle admin-message-toggle" href="#" id="messageDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-envelope"></i>
                     @if ($contactMessageCount > 0)
@@ -40,43 +40,47 @@
                 </a>
                 <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
                     <li>
-                        <div class="dropdown-title d-flex justify-content-between align-items-center">
-                            {{ $contactMessageCount }} Pesan Masuk
-                            <a href="{{ route('admin.contact') }}" class="small">Lihat semua</a>
+                        <div class="dropdown-title admin-message-title d-flex justify-content-between align-items-center">
+                            <span>
+                                <i class="fa fa-envelope-open-text me-2"></i>
+                                Pesan Baru
+                            </span>
+                            <span class="badge bg-primary rounded-pill">{{ $contactMessageCount }}</span>
                         </div>
                     </li>
                     <li>
                         <div class="message-notif-scroll scrollbar-outer">
                             <div class="notif-center">
                                 @forelse ($contactMessages as $message)
-                                    <a href="{{ route('admin.contact') }}">
-                                        <div class="notif-icon notif-primary">
-                                            <i class="fa fa-envelope"></i>
+                                    <a href="{{ route('admin.contact.read', $message->id) }}" class="admin-message-item">
+                                        <div class="admin-message-avatar">
+                                            {{ strtoupper(substr($message->name, 0, 1)) }}
                                         </div>
                                         <div class="notif-content">
-                                            <span class="subject">{{ $message->name }}</span>
-                                            <span class="block">
+                                            <span class="subject d-flex justify-content-between align-items-center">
+                                                {{ $message->name }}
+                                                <small class="text-primary">Baru</small>
+                                            </span>
+                                            <span class="block admin-message-preview">
                                                 {{ Str::limit($message->message, 35) }}
                                             </span>
                                             <span class="time">{{ $message->created_at->diffForHumans() }}</span>
                                         </div>
                                     </a>
                                 @empty
-                                    <a href="{{ route('admin.contact') }}">
-                                        <div class="notif-icon notif-secondary">
+                                    <div class="admin-message-empty text-center">
+                                        <div class="admin-message-empty-icon">
                                             <i class="fa fa-inbox"></i>
                                         </div>
-                                        <div class="notif-content">
-                                            <span class="subject">Belum ada pesan</span>
-                                            <span class="block">Pesan dari form contact akan muncul di sini.</span>
-                                        </div>
-                                    </a>
+                                        <strong>Tidak ada pesan baru</strong>
+                                        <span>Pesan yang sudah dibuka tidak muncul lagi di notifikasi.</span>
+                                    </div>
                                 @endforelse
                             </div>
                         </div>
                     </li>
                     <li>
-                        <a class="see-all" href="{{ route('admin.contact') }}">Lihat semua pesan<i class="fa fa-angle-right"></i>
+                        <a class="see-all admin-message-footer" href="{{ route('admin.contact') }}">Buka halaman contact<i class="fa fa-angle-right"></i>
                         </a>
                     </li>
                 </ul>

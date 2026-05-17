@@ -29,6 +29,19 @@ class ContactController extends Controller
         return redirect()->back()->with('success', 'Balasan untuk ' . $contact->name . ' telah dikirim ke ' . $contact->email);
     }
 
+    public function markAsRead($id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        if (!$contact->read_at) {
+            $contact->update([
+                'read_at' => now(),
+            ]);
+        }
+
+        return redirect()->route('admin.contact');
+    }
+
     public function destroy($id)
     {
         $contact = Contact::findOrFail($id);
