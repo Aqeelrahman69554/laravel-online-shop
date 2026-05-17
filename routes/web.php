@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Shop\HomeController as ShopHomeController;
 use App\Http\Controllers\shop\AboutController as ShopAboutController;
 use App\Http\Controllers\Shop\CartController;
+use App\Http\Controllers\Shop\ContactController as ShopContactController;
 use App\Http\Controllers\Shop\ShopController;
 
 
@@ -139,6 +140,9 @@ Route::get('/service2', [ShopHomeController::class, 'service2'])->name('service2
 
 //About Pengunjung
 Route::get('/about', [ShopAboutController::class, 'index'])->name('about');
+
+Route::get('/contact', [ShopContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ShopContactController::class, 'store'])->name('contact.store');
 
 
 Route::get('/shopdetail/{id}', [ShopHomeController::class, 'detail'])->name('shopdetail');
