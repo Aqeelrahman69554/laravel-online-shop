@@ -1,35 +1,35 @@
 <div class="row g-4 justify-content-center">
     @forelse ($books as $book)
         <div class="col-6 col-md-4 col-lg-3">
-            <a href="{{ route('shopdetail', $book->id) }}">
-                <div class="rounded-4 overflow-hidden shadow-sm h-100 product-card">
-                    <div class="fruite-img">
-                        <img src="{{ asset('storage/' . $book->books_images) }}" class="img-fluid w-100"
-                            alt="{{ $book->books_name }}">
-                    </div>
-                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; left: 10px;">Fruits</div>
-                    <div class="p-3 bg-white">
-                        <span class="badge bg-light text-dark mb-2 px-3 py-2 rounded-pill">
-                            Buku
-                        </span>
+            <div class="rounded-4 overflow-hidden shadow-sm h-100 product-card position-relative">
+                <div class="fruite-img">
+                    <img src="{{ asset('storage/' . $book->books_images) }}" class="img-fluid w-100"
+                        alt="{{ $book->books_name }}">
+                </div>
+                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                    style="top: 10px; left: 10px;">Fruits</div>
+                <div class="p-3 bg-white">
+                    <span class="badge bg-light text-dark mb-2 px-3 py-2 rounded-pill">
+                        Buku
+                    </span>
 
-                        <h5 class="fw-semibold mb-2 product-title">
-                            {{ $book->books_name }}
+                    <h5 class="fw-semibold mb-2 product-title">
+                        {{ $book->books_name }}
+                    </h5>
+
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <h5 class="text-primary fw-bold mb-0">
+                            Rp {{ number_format($book->price, 0, ',', '.') }}
                         </h5>
 
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <h5 class="text-primary fw-bold mb-0">
-                                Rp {{ number_format($book->price, 0, ',', '.') }}
-                            </h5>
-
-                            <a href="#" class="btn btn-sm rounded-circle cart-btn">
-                                <i class="fa fa-shopping-bag"></i>
-                            </a>
-                        </div>
+                        <a href="javascript:void(0)" class="btn btn-sm rounded-circle cart-btn">
+                            <i class="fa fa-shopping-bag"></i>
+                        </a>
                     </div>
                 </div>
-            </a>
+                <a href="{{ route('shopdetail', $book->id) }}" class="stretched-link"
+                    aria-label="Lihat detail {{ $book->books_name }}"></a>
+            </div>
         </div>
     @empty
         <div class="col-12">

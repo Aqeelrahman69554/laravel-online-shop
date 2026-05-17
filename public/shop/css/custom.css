@@ -932,6 +932,8 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
 .cart-btn:hover {
