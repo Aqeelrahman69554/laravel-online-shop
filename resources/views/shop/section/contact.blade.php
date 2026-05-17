@@ -14,10 +14,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex align-items-center">
-                        <div class="input-group w-75 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                        </div>
+                        <form action="{{ route('shop') }}" method="GET" class="input-group w-75 mx-auto d-flex">
+                            <input type="search" name="search" class="form-control p-3" placeholder="keywords"
+                                value="{{ request('search') }}" aria-describedby="search-icon-1">
+                            <button id="search-icon-1" type="submit" class="input-group-text p-3 border-0">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

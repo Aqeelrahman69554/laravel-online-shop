@@ -10,16 +10,16 @@
                     {{ $sliders->first()->home_title ?? 'Not Found' }}
                 </h1>
 
-                <div class="position-relative mx-auto">
-                    <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="text"
-                        placeholder="Cari buku, penulis, atau kategori...">
+                <form action="{{ route('shop') }}" method="GET" class="position-relative mx-auto">
+                    <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="search"
+                        name="search" placeholder="Cari buku, penulis, atau kategori..." value="{{ request('search') }}">
 
                     <button type="submit"
                         class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
                         style="top: 0; right: 25%;">
                         Cari Buku
                     </button>
-                </div>
+                </form>
             </div>
 
             <!-- IMAGE SLIDER -->
@@ -79,16 +79,16 @@
             </div>
 
             <div class="modal-body d-flex align-items-center">
-                <div class="input-group w-75 mx-auto d-flex">
+                <form action="{{ route('shop') }}" method="GET" class="input-group w-75 mx-auto d-flex">
 
-                    <input type="search" class="form-control p-3"
-                        placeholder="Masukkan judul buku, penulis, atau ISBN...">
+                    <input type="search" name="search" class="form-control p-3"
+                        placeholder="Masukkan judul buku, penulis, atau ISBN..." value="{{ request('search') }}">
 
-                    <span class="input-group-text p-3">
+                    <button type="submit" class="input-group-text p-3 border-0">
                         <i class="fa fa-search"></i>
-                    </span>
+                    </button>
 
-                </div>
+                </form>
             </div>
 
         </div>

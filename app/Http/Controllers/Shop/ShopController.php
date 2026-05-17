@@ -33,7 +33,12 @@ class ShopController extends Controller
             $books->where(function ($query) use ($keyword) {
                 $query->where('books_name', 'like', '%' . $keyword . '%')
                     ->orWhere('books_author', 'like', '%' . $keyword . '%')
-                    ->orWhere('books_desc', 'like', '%' . $keyword . '%');
+                    ->orWhere('books_desc', 'like', '%' . $keyword . '%')
+                    ->orWhereIn('category_id', function ($categoryQuery) use ($keyword) {
+                        $categoryQuery->select('id')
+                            ->from('categories')
+                            ->where('name', 'like', '%' . $keyword . '%');
+                    });
             });
         }
 
