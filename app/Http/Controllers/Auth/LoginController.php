@@ -26,6 +26,16 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             if (Auth::user()->role === 'admin') {
+                if (Auth::user()->admin_status !== 'approved') {
+                    Auth::logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerateToken();
+
+                    return back()->withErrors([
+                        'email' => 'Akun admin kamu masih menunggu approval admin utama.',
+                    ])->onlyInput('email');
+                }
+
                 return redirect()->intended('admin/dashboard');
             }
             return redirect()->intended('/');
@@ -68,5 +78,33 @@ class LoginController extends Controller
         Auth::login($user);
 
         return redirect('/')->with('success', 'Pendaftaran berhasil!');
+    }
+
+    public function showAdminRegister()
+    {
+        return view('auth.admin-register');
+    }
+
+    public function adminRegisterStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'phone' => ['required', 'string', 'max:30'],
+            'address' => ['required', 'string', 'max:1000'],
+            'birth_date' => ['required', 'date'],
+            'gender' => ['required', 'string', 'max:30'],
+            'profile_photo' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        ]);
+
+        $validated['profile_photo'] = $request->file('profile_photo')->store('admin-profiles', 'public');
+        $validated['password'] = Hash::make($validated['password']);
+        $validated['role'] = 'admin';
+        $validated['admin_status'] = 'pending';
+
+        User::create($validated);
+
+        return redirect()->route('login')->with('success', 'Pendaftaran admin berhasil dikirim. Tunggu approval dari admin utama.');
     }
 }

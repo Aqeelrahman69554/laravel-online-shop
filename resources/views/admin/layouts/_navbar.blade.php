@@ -2,6 +2,8 @@
 @php
     $contactMessages = \App\Models\Contact::whereNull('read_at')->latest()->limit(4)->get();
     $contactMessageCount = \App\Models\Contact::whereNull('read_at')->count();
+    $adminUser = Auth::user();
+    $adminPhoto = $adminUser?->profile_photo ? asset('storage/' . $adminUser->profile_photo) : asset('admin2/assets/img/profile.jpg');
 @endphp
 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
     <div class="container-fluid">
@@ -232,12 +234,12 @@
                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                     aria-expanded="false">
                     <div class="avatar-sm">
-                        <img src="{{ asset('admin2/assets/img/profile.jpg') }}" alt="..."
+                        <img src="{{ $adminPhoto }}" alt="..."
                             class="avatar-img rounded-circle" />
                     </div>
                     <span class="profile-username">
                         <span class="op-7">Hi,</span>
-                        <span class="fw-bold">Hizrian</span>
+                        <span class="fw-bold">{{ $adminUser?->name ?? 'Admin' }}</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -245,25 +247,25 @@
                         <li>
                             <div class="user-box">
                                 <div class="avatar-lg">
-                                    <img src="assets/img/profile.jpg" alt="image profile"
+                                    <img src="{{ $adminPhoto }}" alt="image profile"
                                         class="avatar-img rounded" />
                                 </div>
                                 <div class="u-text">
-                                    <h4>Hizrian</h4>
+                                    <h4>{{ $adminUser?->name ?? 'Admin' }}</h4>
                                     <p class="text-muted">
-                                        hello@example.com
+                                        {{ $adminUser?->email }}
                                     </p>
-                                    <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                    <a href="{{ route('admin.profile') }}" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">My Profile</a>
+                            <a class="dropdown-item" href="{{ route('admin.profile') }}">My Profile</a>
                             <a class="dropdown-item" href="#">My Balance</a>
                             <a class="dropdown-item" href="#">Inbox</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Account Setting</a>
+                            <a class="dropdown-item" href="{{ route('admin.profile') }}">Account Setting</a>
                             <div class="dropdown-divider"></div>
                             <a class="nav-link" href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

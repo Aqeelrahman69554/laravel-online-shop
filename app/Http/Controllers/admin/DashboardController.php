@@ -14,10 +14,10 @@ class DashboardController extends Controller
     {
         $data = [
             'total_books' => Book::count(),
-            'total_customers' => User::where('role', 'customer')->count(),
+            'total_customers' => User::where('role', 'pengunjung')->count(),
             'total_revenue' => Transaction::where('status', 'completed')->sum('total_price'),
             'total_transactions' => Transaction::count(),
-            'new_customers' => User::where('role', 'customer')->latest()->take(5)->get(),
+            'new_customers' => User::where('role', 'pengunjung')->latest()->take(5)->get(),
             'transactions' => Transaction::latest()->take(10)->get(),
         ];
 

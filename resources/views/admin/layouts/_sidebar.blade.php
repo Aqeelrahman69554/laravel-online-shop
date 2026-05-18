@@ -31,6 +31,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ Request::is('admin/profile*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.profile') }}">
+                        <i class="fas fa-user-shield"></i>
+                        <p>Admin Profile</p>
+                    </a>
+                </li>
+
                 <li
                     class="nav-item {{ Request::is('admin/home*', 'admin/service*', 'admin/service2*', 'admin/testimoni*', 'admin/about*') ? 'active' : '' }}">
                     <a data-bs-toggle="collapse" href="#tables">

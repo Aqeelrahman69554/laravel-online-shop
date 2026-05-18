@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\admin\AboutFeatureController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\AdminProfileController;
 // URL SHOP
 use App\Http\Controllers\Shop\HomeController as ShopHomeController;
 use App\Http\Controllers\shop\AboutController as ShopAboutController;
@@ -40,6 +41,8 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 // REGISTER
 Route::get('register', [LoginController::class, 'showRegister'])->name('register');
 Route::post('register', [LoginController::class, 'registerStore'])->name('register.post');
+Route::get('admin/register', [LoginController::class, 'showAdminRegister'])->name('admin.register');
+Route::post('admin/register', [LoginController::class, 'adminRegisterStore'])->name('admin.register.post');
 
 Route::middleware('auth')->group(function () {
 
@@ -47,6 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::middleware('can:is-admin')->prefix('admin')->group(function () {
         // 1. Route Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
+        Route::put('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+        Route::post('/admins', [AdminProfileController::class, 'store'])->name('admin.admins.store');
+        Route::patch('/admins/{user}/approve', [AdminProfileController::class, 'approve'])->name('admin.admins.approve');
+        Route::patch('/admins/{user}/reject', [AdminProfileController::class, 'reject'])->name('admin.admins.reject');
 
         // 2. Route Halaman Utama (Home)
         // Menampilkan Tabel
