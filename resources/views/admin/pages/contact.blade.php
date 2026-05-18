@@ -29,8 +29,19 @@
                             <td><small>{{ Str::limit($item->message, 50) }}</small></td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-primary btn-sm text-white btn-view-message"
+                                        data-name="{{ $item->name }}"
+                                        data-email="{{ $item->email }}"
+                                        data-date="{{ $item->created_at->format('d M Y H:i') }}"
+                                        data-message="{{ $item->message }}"
+                                        data-bs-toggle="modal" data-bs-target="#viewMessageModal">
+                                        <i class="fas fa-eye"></i> Lihat
+                                    </button>
+
                                     <button class="btn btn-info btn-sm text-white"
-                                        onclick="prepareReplyModal('{{ $item->id }}', '{{ $item->name }}', '{{ $item->message }}')"
+                                        data-id="{{ $item->id }}"
+                                        data-name="{{ $item->name }}"
+                                        data-message="{{ $item->message }}"
                                         data-bs-toggle="modal" data-bs-target="#replyModal">
                                         <i class="fas fa-reply"></i> Balas
                                     </button>
@@ -45,6 +56,41 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="viewMessageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-eye"></i> Detail Pesan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold mb-1">Nama Pengirim</label>
+                        <div class="form-control bg-light" id="view_sender_name"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold mb-1">Email</label>
+                        <div class="form-control bg-light" id="view_sender_email"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold mb-1">Tanggal</label>
+                        <div class="form-control bg-light" id="view_sender_date"></div>
+                    </div>
+                </div>
+
+                <div class="mb-0">
+                    <label class="form-label fw-bold mb-1">Isi Pesan</label>
+                    <div class="border rounded bg-light p-3" id="view_sender_message" style="min-height: 150px; white-space: pre-wrap;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
@@ -79,6 +125,21 @@
 </div>
 
 <script>
+    document.querySelectorAll('.btn-view-message').forEach((button) => {
+        button.addEventListener('click', function () {
+            document.getElementById('view_sender_name').innerText = this.dataset.name;
+            document.getElementById('view_sender_email').innerText = this.dataset.email;
+            document.getElementById('view_sender_date').innerText = this.dataset.date;
+            document.getElementById('view_sender_message').innerText = this.dataset.message;
+        });
+    });
+
+    document.querySelectorAll('[data-bs-target="#replyModal"]').forEach((button) => {
+        button.addEventListener('click', function () {
+            prepareReplyModal(this.dataset.id, this.dataset.name, this.dataset.message);
+        });
+    });
+
     function prepareReplyModal(id, name, message) {
         const form = document.getElementById('replyForm');
         form.action = "/admin/contact/reply/" + id;
