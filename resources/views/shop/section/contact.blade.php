@@ -14,10 +14,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex align-items-center">
-                        <div class="input-group w-75 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                        </div>
+                        <form action="{{ route('shop') }}" method="GET" class="input-group w-75 mx-auto d-flex">
+                            <input type="search" name="search" class="form-control p-3" placeholder="keywords"
+                                value="{{ request('search') }}" aria-describedby="search-icon-1">
+                            <button id="search-icon-1" type="submit" class="input-group-text p-3 border-0">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -40,6 +43,20 @@
         <!-- Contact Start -->
         <div class="container-fluid contact py-5">
             <div class="container py-5">
+                @if (session('success'))
+                    <div id="contact-alert" class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div id="contact-alert" class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                        Mohon lengkapi form contact dengan benar.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="p-5 bg-light rounded">
                     <div class="row g-4">
                         <div class="col-12">
@@ -56,11 +73,30 @@
                             </div>
                         </div>
                         <div class="col-lg-7">
-                            <form action="" class="">
-                                <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name">
-                                <input type="email" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email">
-                                <textarea class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message"></textarea>
-                                <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
+                            <form action="{{ route('contact.store') }}" method="POST">
+                                @csrf
+                                <input type="text" name="name"
+                                    class="w-100 form-control border-0 py-3 mb-4 @error('name') is-invalid @enderror"
+                                    placeholder="Your Name" value="{{ old('name') }}">
+                                @error('name')
+                                    <div class="invalid-feedback d-block mb-3">{{ $message }}</div>
+                                @enderror
+
+                                <input type="email" name="email"
+                                    class="w-100 form-control border-0 py-3 mb-4 @error('email') is-invalid @enderror"
+                                    placeholder="Enter Your Email" value="{{ old('email') }}">
+                                @error('email')
+                                    <div class="invalid-feedback d-block mb-3">{{ $message }}</div>
+                                @enderror
+
+                                <textarea name="message" class="w-100 form-control border-0 mb-4 @error('message') is-invalid @enderror"
+                                    rows="5" cols="10" placeholder="Your Message">{{ old('message') }}</textarea>
+                                @error('message')
+                                    <div class="invalid-feedback d-block mb-3">{{ $message }}</div>
+                                @enderror
+
+                                <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary"
+                                    type="submit">Submit</button>
                             </form>
                         </div>
                         <div class="col-lg-5">
@@ -113,4 +149,20 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const alertBox = document.getElementById("contact-alert");
+
+            if (alertBox) {
+                setTimeout(function() {
+                    alertBox.classList.remove("show");
+
+                    setTimeout(function() {
+                        alertBox.remove();
+                    }, 300);
+                }, 4000);
+            }
+        });
+    </script>
     

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Book;
+use App\Models\Service2;
+use App\Models\Banner;
 
 
 class HomeController extends Controller
@@ -14,14 +17,15 @@ class HomeController extends Controller
         $sliders = DB::table('home')->get();
         $services = DB::table('service')->get();
         $categories = DB::table('categories')->get();
-        $statistics = DB::table('site_statistic')->get();
+        $service2 = DB::table('service2')->get();
         $testimoni = DB::table('testimoni')->get();
+        $banners = Banner::latest()->first();
 
         // 🔥 kalau pilih kategori
         if ($request->category) {
             $books = DB::table('books')
                 ->where('category_id', $request->category)
-                ->paginate(8);
+                ->paginate(4);
         } else {
             // 🔥 ALL (ambil 2 buku per kategori)
             $books = collect();
@@ -37,24 +41,37 @@ class HomeController extends Controller
             }
 
             // 🔥 batasi total 8
-            $books = $books->take(8);
+            $books = $books->take(4);
         }
 
-        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories','statistics', 'testimoni'));
+        return view('shop.pages.home', compact('sliders', 'services', 'books', 'categories', 'service2', 'testimoni','banners'));
     }
 
     public function detail($id)
     {
         $book = DB::table('books')
-        ->join('categories','books.category_id', '=', 'categories.id')
-        ->select('books.*', 'categories.name as category_name')
-        ->where('books.id',$id)
-        ->first();
+            ->join('categories', 'books.category_id', '=', 'categories.id')
+            ->select('books.*', 'categories.name as category_name')
+            ->where('books.id', $id)
+            ->first();
 
         if (!$book) {
             abort(404);
         }
 
         return view('shop.pages.shopdetail', compact('book'));
+    }
+
+    public function filter($id = null)
+    {
+        if ($id) {
+
+            $books = Book::where('category_id', $id)->limit(4)->get();
+        } else {
+
+            $books = Book::limit(4)->get();
+        }
+
+        return view('shop.partials.product-list', compact('books'));
     }
 }

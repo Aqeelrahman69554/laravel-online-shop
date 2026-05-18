@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Fix Gate
         Gate::define('is-admin', function (User $user) {
-            return $user->role === 'admin';
+            return $user->role === 'admin' && $user->admin_status === 'approved';
         });
 
         // Fix View Composer

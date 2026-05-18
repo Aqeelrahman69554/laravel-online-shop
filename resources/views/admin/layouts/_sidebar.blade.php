@@ -1,19 +1,4 @@
 <!-- Sidebar -->
-<style>
-    /* Mengubah warna latar belakang jika class-nya adalah .nav-item.active */
-    .nav-item.active {
-        background-color: #3e3e42 !important;
-        /* Ganti dengan warna yang kamu suka */
-        border-radius: 5px;
-        /* Opsional: agar sudutnya tumpul */
-    }
-
-    /* Mengubah warna teks agar terlihat kontras */
-    .nav-item.active a {
-        color: #ffffff !important;
-        font-weight: bold;
-    }
-</style>
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
@@ -46,13 +31,21 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('admin/home*', 'admin/service*') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('admin/profile*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.profile') }}">
+                        <i class="fas fa-user-shield"></i>
+                        <p>Admin Profile</p>
+                    </a>
+                </li>
+
+                <li
+                    class="nav-item {{ Request::is('admin/home*', 'admin/service*', 'admin/service2*', 'admin/testimoni*', 'admin/about*') ? 'active' : '' }}">
                     <a data-bs-toggle="collapse" href="#tables">
                         <i class="fas fa-edit"></i>
                         <p>Content Management</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{ Request::is('admin/home*', 'admin/service*') ? 'show' : '' }}"
+                    <div class="collapse {{ Request::is('admin/home*', 'admin/service*', 'admin/service2*', 'admin/testimoni*', 'admin/about*') ? 'show' : '' }}"
                         id="tables">
                         <ul class="nav nav-collapse">
                             <li class="{{ Request::is('admin/home*') ? 'active' : '' }}">
@@ -60,9 +53,14 @@
                                     <span class="sub-item">Home</span>
                                 </a>
                             </li>
-                            <li class="{{ Request::is('admin/service*') ? 'active' : '' }}">
+                            <li class="{{ Request::is('admin/service') ? 'active' : '' }}">
                                 <a href="{{ route('admin.service') }}">
                                     <span class="sub-item">Service</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('admin/service2*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.service2') }}">
+                                    <span class="sub-item">Service 2</span>
                                 </a>
                             </li>
                             <li class="{{ Request::is('admin/testimoni*') ? 'active' : '' }}">
@@ -70,7 +68,7 @@
                                     <span class="sub-item">Testimoni</span>
                                 </a>
                             </li>
-                            <li class="{{ Request::is('admin/testimoni*') ? 'active' : '' }}">
+                            <li class="{{ Request::is('admin/about*') ? 'active' : '' }}">
                                 <a href="{{ route('admin.about') }}">
                                     <span class="sub-item">About</span>
                                 </a>
@@ -107,10 +105,10 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('admin/statistics*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.statistics') }}">
-                        <i class="fas fa-chart-bar"></i>
-                        <p>Site Statistic</p>
+                <li class="nav-item {{ request()->routeIs('admin.banner*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.banner') }}">
+                        <i class="fas fa-images"></i>
+                        <p>Banner</p>
                     </a>
                 </li>
 

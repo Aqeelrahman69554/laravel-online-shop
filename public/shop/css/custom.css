@@ -1,10 +1,8 @@
-
 html {
     scroll-behavior: smooth;
 }
 #produk {
     scroll-margin-top: 120px;
-
 }
 /* ===============================
    THEME TOBUKEL (IMPROVED BROWN)
@@ -593,14 +591,13 @@ h3 {
     border-radius: 12px;
     overflow: hidden;
 
-     transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .fruite-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
-
 
 .fruite-item:hover img {
     transform: scale(1.05);
@@ -641,7 +638,7 @@ h3 {
 ========================= */
 
 .footer {
-    background: linear-gradient(135deg, #4E342E, #6D4C41);
+    background: linear-gradient(135deg, #4e342e, #6d4c41);
     color: #f5e6d3;
 }
 
@@ -663,37 +660,37 @@ h3 {
 }
 
 .footer a:hover {
-    color: #FFD180;
+    color: #ffd180;
     padding-left: 5px;
 }
 
 .footer .btn {
-    border: 2px solid #FFD180;
-    color: #FFD180;
+    border: 2px solid #ffd180;
+    color: #ffd180;
     transition: 0.3s;
 }
 
 .footer .btn:hover {
-    background-color: #FFD180;
-    color: #4E342E;
+    background-color: #ffd180;
+    color: #4e342e;
 }
 
 .footer .btn-outline-light {
-    border-color: rgba(255,255,255,0.5);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .footer .btn-outline-light:hover {
-    background-color: #FFD180;
-    border-color: #FFD180;
-    color: #4E342E !important;
+    background-color: #ffd180;
+    border-color: #ffd180;
+    color: #4e342e !important;
 }
 
 .footer .border-secondary {
-    border-color: rgba(255,255,255,0.15) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .footer .text-primary {
-    color: #FFD180 !important;
+    color: #ffd180 !important;
 }
 
 .footer .text-secondary {
@@ -714,6 +711,267 @@ h3 {
 }
 
 .footer .copyright-text span {
-    color: #FFD180;
+    color: #ffd180;
     font-weight: 700;
+}
+
+.category-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* padding-bottom: 5px; */
+     width: 100%;
+    scroll-behavior: smooth;
+    padding: 0 45px;
+}
+
+.category-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* BIAR TIDAK MENGECIL */
+.category-scroll .nav-item {
+    flex: 0 0 auto;
+}
+
+/* BUTTON */
+.nav-pills .nav-item a {
+    transition: all 0.3s ease;
+    border: 1.5px solid #c7b299;
+    background: #fff;
+    color: #6b4a36 !important;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* HOVER */
+.nav-pills .nav-item a:hover {
+    transform: translateY(-3px);
+    background: #8b5e3c !important;
+    color: white !important;
+    border-color: #8b5e3c;
+    box-shadow: 0 8px 20px rgba(139, 94, 60, 0.25);
+}
+
+/* ACTIVE */
+.nav-pills .bg-primary {
+    background: #8b5e3c !important;
+    border: 1.5px solid #8b5e3c !important;
+    color: white !important;
+    box-shadow: 0 8px 20px rgba(139, 94, 60, 0.25);
+}
+
+/* TEXT */
+.nav-pills span {
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+/* ANIMASI PRODUK */
+#product-list,
+#shop-product-list {
+    transition: all 0.3s ease;
+}
+
+/* SAAT LOADING */
+.product-loading {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* SAAT MUNCUL */
+.product-show {
+    animation: fadeProduct 0.4s ease;
+}
+
+@keyframes fadeProduct {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.category-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* BUTTON */
+.scroll-btn {
+    position: absolute;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #8b5e3c;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+
+/* HOVER */
+.scroll-btn:hover {
+    transform: scale(1.08);
+}
+
+/* POSISI */
+.left-btn {
+    left: 0;
+}
+
+.right-btn {
+    right: 0;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .scroll-btn {
+        display: none;
+    }
+
+}
+
+
+/* navbar logo */
+.navbar-logo {
+    width: 95px;
+    height: 95px;
+    object-fit: contain;
+}
+
+
+/* shop */
+.product-card {
+    transition: 0.3s ease;
+    background: #fff;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #777;
+}
+
+.btn-light.active {
+    background-color: #8b5e3c !important;
+    color: #fff !important;
+    border: none;
+}
+
+.fruite-item,
+.product-card {
+    height: 100%;
+}
+
+.product-card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.product-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .3s ease;
+    height: 100%;
+    border: 1px solid #eee;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.product-card img {
+    height: 220px;
+    object-fit: cover;
+    transition: .3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.04);
+}
+
+.product-title {
+    font-size: 16px;
+    line-height: 1.4;
+    height: 45px;
+    overflow: hidden;
+}
+
+.cart-btn {
+    width: 42px;
+    height: 42px;
+    background: #8b5e3c !important;
+       color: #fff !important;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.cart-btn:hover {
+    background: #6f4a30 !important;
+    color: #fff !important;
+}
+
+.badge {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.pagination a,
+.pagination span {
+    color: #5a3e2b;
+    padding: 10px 16px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    border: 1px solid #c8a27c;
+    margin: 0 4px;
+    min-width: 48px;
+    text-align: center;
+}
+
+.pagination .active {
+    background-color: #8b5e3c;
+    color: #fff;
+    border-color: #8b5e3c;
+}
+
+.pagination a:hover {
+    background-color: #8b5e3c;
+    color: #fff;
+}
+
+.pagination .disabled {
+    color: #b8aa9a;
+    cursor: not-allowed;
+    opacity: 0.65;
+    pointer-events: none;
 }

@@ -295,6 +295,18 @@
                         Silakan login untuk masuk ke dashboard admin TOBUKEL
                     </span>
 
+                    @if (session('success'))
+                        <div style="background:#e9f8ef;color:#157347;padding:12px 14px;border-radius:12px;margin-bottom:18px;font-size:14px;">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div style="background:#fff1f1;color:#b42318;padding:12px 14px;border-radius:12px;margin-bottom:18px;font-size:14px;">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
+
                     <form action="{{ route('login.post') }}" method="POST">
                         @csrf
 
@@ -324,6 +336,11 @@
                     <div class="back-home">
                         <a href="{{ route('register') }}">
                             Belum punya akun? <b>Daftar Sekarang</b>
+                        </a>
+                    </div>
+                    <div class="back-home" style="margin-top: 10px;">
+                        <a href="{{ route('admin.register') }}">
+                            Ingin menjadi admin? <b>Daftar Admin</b>
                         </a>
                     </div>
                     <div class="back-home" style="margin-top: 10px;">

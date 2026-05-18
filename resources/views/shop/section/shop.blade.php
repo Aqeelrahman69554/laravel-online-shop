@@ -7,11 +7,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control p-3" placeholder="keywords"
+                    <form action="{{ route('shop') }}" method="GET" class="shop-search-form input-group w-75 mx-auto d-flex">
+                        @if (request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
+                        <input type="search" name="search" class="form-control p-3" placeholder="keywords"
+                            value="{{ request('search') }}"
                             aria-describedby="search-icon-1">
-                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                    </div>
+                        <button id="search-icon-1" type="submit" class="input-group-text p-3 border-0">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -34,256 +40,60 @@
     <!-- Fruits Shop Start-->
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
-            <h1 class="mb-4">Fresh fruits shop</h1>
+            <h1 class="mb-4">List Product Buku</h1>
             <div class="row g-4">
                 <div class="col-lg-12">
-                    <div class="row g-4">
-                        <div class="col-xl-3">
-                            <div class="input-group w-100 mx-auto d-flex">
-                                <input type="search" class="form-control p-3" placeholder="keywords"
-                                    aria-describedby="search-icon-1">
-                                <span id="search-icon-1" class="input-group-text p-3"><i
-                                        class="fa fa-search"></i></span>
+                    <!-- Top Filter -->
+                    <div class="row mb-5 align-items-center g-3">
+
+                        <!-- Search -->
+                        <div class="col-lg-4">
+                            <form action="{{ route('shop') }}" method="GET" class="shop-search-form input-group">
+                                @if (request('category'))
+                                    <input type="hidden" name="category" value="{{ request('category') }}">
+                                @endif
+                                <input id="shop-search-input" type="search" name="search"
+                                    class="form-control py-3 border-0 shadow-sm" placeholder="Cari buku..."
+                                    value="{{ request('search') }}">
+                                <button type="submit" class="input-group-text bg-white border-0 shadow-sm">
+                                    <i class="fa fa-search text-secondary"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Categories -->
+                        <div class="col-lg-5">
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="{{ route('shop') }}"
+                                    data-category=""
+                                    class="shop-category-btn btn btn-sm rounded-pill px-4 {{ request('category') ? 'btn-light' : 'btn-success text-white' }}">
+
+                                    Semua
+
+                                </a>
+                                @foreach ($categories as $category)
+                                    <a href="{{ route('shop', ['category' => $category->id]) }}"
+                                        data-category="{{ $category->id }}"
+                                        class="shop-category-btn btn btn-sm rounded-pill px-4 {{ request('category') == $category->id ? 'btn-success text-white' : 'btn-light' }}">
+
+                                        {{ $category->name }}
+
+                                    </a>
+                                @endforeach
+
                             </div>
                         </div>
-                        <div class="col-6"></div>
-                        <div class="col-xl-3">
-                            <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                <label for="fruits">Default Sorting:</label>
-                                <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3"
-                                    form="fruitform">
-                                    <option value="volvo">Nothing</option>
-                                    <option value="saab">Popularity</option>
-                                    <option value="opel">Organic</option>
-                                    <option value="audi">Fantastic</option>
-                                </select>
-                            </div>
-                        </div>
+
+
+
                     </div>
-                    <div class="row g-4">
-                        <div class="col-lg-3">
-                            <div class="row g-4">
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <h4>Categories</h4>
-                                        <ul class="list-unstyled fruite-categorie">
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
-                                                    <span>(3)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
-                                                    <span>(5)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i
-                                                            class="fas fa-apple-alt me-2"></i>Strawbery</a>
-                                                    <span>(2)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
-                                                    <span>(8)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
-                                                    <span>(5)</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <h4 class="mb-2">Price</h4>
-                                        <input type="range" class="form-range w-100" id="rangeInput"
-                                            name="rangeInput" min="0" max="500" value="0"
-                                            oninput="amount.value=rangeInput.value">
-                                        <output id="amount" name="amount" min-velue="0" max-value="500"
-                                            for="rangeInput">0</output>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <h4>Additional</h4>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-1"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-1"> Organic</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-2"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-2"> Fresh</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-3"> Sales</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-4"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-4"> Discount</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-5"
-                                                name="Categories-1" value="Beverages">
-                                            <label for="Categories-5"> Expired</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h4 class="mb-3">Featured products</h4>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-1.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-2.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-3.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-center my-4">
-                                        <a href="#"
-                                            class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew
-                                            More</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="position-relative banner-wrapper">
-                                        <img src="{{ asset('shop/img/tobukel_1.png') }}"
-                                            class="img-fluid w-100 rounded banner-img" alt="">
-                                        <div class="position-absolute"
-                                            style="top: 50%; right: 10px; transform: translateY(-50%);">
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="row g-4 justify-content-center">
-                                <div class="col-md-6 col-lg-6 col-xl-4">
-                                    <a href="{{ route('shopdetail') }}">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te
-                                                    incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-4">
-                                    <a href="{{ route('shopdetail') }}">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te
-                                                    incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                    <!-- Product Grid -->
+                    <div class="row g-4 justify-content-center">
 
-
-                                <div class="col-12">
-                                    <div class="pagination d-flex justify-content-center mt-5">
-                                        <a href="#" class="rounded">&laquo;</a>
-                                        <a href="#" class="active rounded">1</a>
-                                        <a href="#" class="rounded">2</a>
-                                        <a href="#" class="rounded">3</a>
-                                        <a href="#" class="rounded">4</a>
-                                        <a href="#" class="rounded">5</a>
-                                        <a href="#" class="rounded">6</a>
-                                        <a href="#" class="rounded">&raquo;</a>
-                                    </div>
-                                </div>
+                        <div class="col-lg-12">
+                            <div id="shop-product-list">
+                                @include('shop.partials.shop-product-list')
                             </div>
                         </div>
                     </div>
@@ -309,3 +119,117 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const productList = document.getElementById("shop-product-list");
+            const categoryButtons = document.querySelectorAll(".shop-category-btn");
+            const searchForms = document.querySelectorAll(".shop-search-form");
+
+            if (!productList || categoryButtons.length === 0) {
+                return;
+            }
+
+            function setActiveCategory(categoryId) {
+                categoryButtons.forEach(function(button) {
+                    button.classList.remove("btn-success", "text-white");
+                    button.classList.add("btn-light");
+
+                    if (button.dataset.category === categoryId) {
+                        button.classList.remove("btn-light");
+                        button.classList.add("btn-success", "text-white");
+                    }
+                });
+            }
+
+            function getActiveCategory() {
+                const activeButton = document.querySelector(".shop-category-btn.btn-success");
+
+                return activeButton ? activeButton.dataset.category : "";
+            }
+
+            function getSearchKeyword() {
+                const searchInput = document.getElementById("shop-search-input");
+
+                return searchInput ? searchInput.value.trim() : "";
+            }
+
+            function buildShopUrl(categoryId = getActiveCategory(), searchKeyword = getSearchKeyword()) {
+                const url = new URL("{{ route('shop') }}", window.location.origin);
+
+                if (categoryId) {
+                    url.searchParams.set("category", categoryId);
+                }
+
+                if (searchKeyword) {
+                    url.searchParams.set("search", searchKeyword);
+                }
+
+                return url.toString();
+            }
+
+            function loadShopProducts(url, categoryId = null) {
+                productList.classList.add("product-loading");
+
+                fetch(url, {
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                    .then(function(response) {
+                        return response.text();
+                    })
+                    .then(function(html) {
+                        setTimeout(function() {
+                            productList.innerHTML = html;
+                            productList.classList.remove("product-loading");
+                            productList.classList.add("product-show");
+
+                            if (categoryId !== null) {
+                                setActiveCategory(categoryId);
+                            }
+
+                            window.history.pushState({}, "", url);
+
+                            setTimeout(function() {
+                                productList.classList.remove("product-show");
+                            }, 400);
+                        }, 200);
+                    });
+            }
+
+            categoryButtons.forEach(function(button) {
+                button.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    loadShopProducts(buildShopUrl(this.dataset.category), this.dataset.category);
+                });
+            });
+
+            searchForms.forEach(function(form) {
+                form.addEventListener("submit", function(e) {
+                    e.preventDefault();
+
+                    const input = form.querySelector('input[name="search"]');
+                    const searchKeyword = input ? input.value.trim() : "";
+
+                    document.querySelectorAll('input[name="search"]').forEach(function(searchInput) {
+                        searchInput.value = searchKeyword;
+                    });
+
+                    loadShopProducts(buildShopUrl(getActiveCategory(), searchKeyword));
+                });
+            });
+
+            productList.addEventListener("click", function(e) {
+                const paginationLink = e.target.closest(".shop-pagination a");
+
+                if (!paginationLink || paginationLink.classList.contains("disabled") ||
+                    paginationLink.classList.contains("active")) {
+                    return;
+                }
+
+                e.preventDefault();
+                loadShopProducts(paginationLink.href);
+            });
+        });
+    </script>

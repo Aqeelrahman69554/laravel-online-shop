@@ -6,7 +6,7 @@
 
             <div class="row g-4 justify-content-center">
 
-                @foreach ($statistics as $item)
+                @foreach ($service2 as $item)
                     <div class="col-md-6 col-lg-6 col-xl-3">
 
                         <div class="counter bg-white rounded p-5 text-center h-100">

@@ -1,4 +1,10 @@
 <!-- Navbar Header -->
+@php
+    $contactMessages = \App\Models\Contact::whereNull('read_at')->latest()->limit(4)->get();
+    $contactMessageCount = \App\Models\Contact::whereNull('read_at')->count();
+    $adminUser = Auth::user();
+    $adminPhoto = $adminUser?->profile_photo ? asset('storage/' . $adminUser->profile_photo) : asset('admin2/assets/img/profile.jpg');
+@endphp
 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
     <div class="container-fluid">
         <nav class="navbar navbar-header-left navbar-expand-lg navbar-custom navbar-form nav-search p-0 d-none d-lg-flex">
@@ -27,79 +33,56 @@
                 </ul>
             </li>
             <li class="nav-item topbar-icon dropdown hidden-caret">
-                <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
+                <a class="nav-link dropdown-toggle admin-message-toggle" href="#" id="messageDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-envelope"></i>
+                    @if ($contactMessageCount > 0)
+                        <span class="notification">{{ $contactMessageCount }}</span>
+                    @endif
                 </a>
                 <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
                     <li>
-                        <div class="dropdown-title d-flex justify-content-between align-items-center">
-                            Messages
-                            <a href="#" class="small">Mark all as read</a>
+                        <div class="dropdown-title admin-message-title d-flex justify-content-between align-items-center">
+                            <span>
+                                <i class="fa fa-envelope-open-text me-2"></i>
+                                Pesan Baru
+                            </span>
+                            <span class="badge bg-primary rounded-pill">{{ $contactMessageCount }}</span>
                         </div>
                     </li>
                     <li>
                         <div class="message-notif-scroll scrollbar-outer">
                             <div class="notif-center">
-                                <a href="#">
-                                    <div class="notif-img">
-                                        <img src="assets/img/jm_denis.jpg" alt="Img Profile" />
+                                @forelse ($contactMessages as $message)
+                                    <a href="{{ route('admin.contact.read', $message->id) }}" class="admin-message-item">
+                                        <div class="admin-message-avatar">
+                                            {{ strtoupper(substr($message->name, 0, 1)) }}
+                                        </div>
+                                        <div class="notif-content">
+                                            <span class="subject d-flex justify-content-between align-items-center">
+                                                {{ $message->name }}
+                                                <small class="text-primary">Baru</small>
+                                            </span>
+                                            <span class="block admin-message-preview">
+                                                {{ Str::limit($message->message, 35) }}
+                                            </span>
+                                            <span class="time">{{ $message->created_at->diffForHumans() }}</span>
+                                        </div>
+                                    </a>
+                                @empty
+                                    <div class="admin-message-empty text-center">
+                                        <div class="admin-message-empty-icon">
+                                            <i class="fa fa-inbox"></i>
+                                        </div>
+                                        <strong>Tidak ada pesan baru</strong>
+                                        <span>Pesan yang sudah dibuka tidak muncul lagi di notifikasi.</span>
                                     </div>
-                                    <div class="notif-content">
-                                        <span class="subject">Jimmy
-                                            Denis</span>
-                                        <span class="block">
-                                            How are you ?
-                                        </span>
-                                        <span class="time">5 minutes
-                                            ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-img">
-                                        <img src="assets/img/chadengle.jpg" alt="Img Profile" />
-                                    </div>
-                                    <div class="notif-content">
-                                        <span class="subject">Chad</span>
-                                        <span class="block">
-                                            Ok, Thanks !
-                                        </span>
-                                        <span class="time">12 minutes
-                                            ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-img">
-                                        <img src="assets/img/mlane.jpg" alt="Img Profile" />
-                                    </div>
-                                    <div class="notif-content">
-                                        <span class="subject">Jhon Doe</span>
-                                        <span class="block">
-                                            Ready for the
-                                            meeting today...
-                                        </span>
-                                        <span class="time">12 minutes
-                                            ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-img">
-                                        <img src="assets/img/talha.jpg" alt="Img Profile" />
-                                    </div>
-                                    <div class="notif-content">
-                                        <span class="subject">Talha</span>
-                                        <span class="block">
-                                            Hi, Apa Kabar ?
-                                        </span>
-                                        <span class="time">17 minutes
-                                            ago</span>
-                                    </div>
-                                </a>
+                                @endforelse
                             </div>
                         </div>
                     </li>
                     <li>
-                        <a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i>
+                        <a class="see-all admin-message-footer" href="{{ route('admin.contact') }}">Buka halaman contact<i class="fa fa-angle-right"></i>
                         </a>
                     </li>
                 </ul>
@@ -251,12 +234,12 @@
                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                     aria-expanded="false">
                     <div class="avatar-sm">
-                        <img src="{{ asset('admin2/assets/img/profile.jpg') }}" alt="..."
+                        <img src="{{ $adminPhoto }}" alt="..."
                             class="avatar-img rounded-circle" />
                     </div>
                     <span class="profile-username">
                         <span class="op-7">Hi,</span>
-                        <span class="fw-bold">Hizrian</span>
+                        <span class="fw-bold">{{ $adminUser?->name ?? 'Admin' }}</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -264,25 +247,25 @@
                         <li>
                             <div class="user-box">
                                 <div class="avatar-lg">
-                                    <img src="assets/img/profile.jpg" alt="image profile"
+                                    <img src="{{ $adminPhoto }}" alt="image profile"
                                         class="avatar-img rounded" />
                                 </div>
                                 <div class="u-text">
-                                    <h4>Hizrian</h4>
+                                    <h4>{{ $adminUser?->name ?? 'Admin' }}</h4>
                                     <p class="text-muted">
-                                        hello@example.com
+                                        {{ $adminUser?->email }}
                                     </p>
-                                    <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                    <a href="{{ route('admin.profile') }}" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">My Profile</a>
+                            <a class="dropdown-item" href="{{ route('admin.profile') }}">My Profile</a>
                             <a class="dropdown-item" href="#">My Balance</a>
                             <a class="dropdown-item" href="#">Inbox</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Account Setting</a>
+                            <a class="dropdown-item" href="{{ route('admin.profile') }}">Account Setting</a>
                             <div class="dropdown-divider"></div>
                             <a class="nav-link" href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
