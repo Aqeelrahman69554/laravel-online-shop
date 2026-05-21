@@ -22,6 +22,8 @@ use App\Http\Controllers\shop\AboutController as ShopAboutController;
 use App\Http\Controllers\Shop\CartController;
 use App\Http\Controllers\Shop\ContactController as ShopContactController;
 use App\Http\Controllers\Shop\ShopController;
+use App\Http\Controllers\shop\CheckoutController;
+use App\Http\Controllers\shop\OrderHistoryController;
 
 
 // --- Bagian Admin Proyek Kamu ---
@@ -136,6 +138,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+    Route::get('/orders/history', [OrderHistoryController::class, 'index'])->name('orders.history');
+
+    Route::get('/checkout/success-clear', [CheckoutController::class, 'clearCartAfterPayment'])->name('checkout.success.clear')->middleware('auth');
+
+    Route::post('/checkout/process', [CheckoutController::class,'process'])->name('checkout.process');
 });
 
 

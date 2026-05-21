@@ -1,14 +1,7 @@
-<!-- Spinner Start -->
 <div id="spinner"
-    class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-grow text-primary" role="status"></div>
 </div>
-<!-- Spinner End -->
-
-
-
-
-<!-- Modal Search Start -->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content rounded-0">
@@ -19,8 +12,7 @@
             <div class="modal-body d-flex align-items-center">
                 <form action="{{ route('shop') }}" method="GET" class="input-group w-75 mx-auto d-flex">
                     <input type="search" name="search" class="form-control p-3" placeholder="keywords"
-                        value="{{ request('search') }}"
-                        aria-describedby="search-icon-1">
+                        value="{{ request('search') }}" aria-describedby="search-icon-1">
                     <button id="search-icon-1" type="submit" class="input-group-text p-3 border-0">
                         <i class="fa fa-search"></i>
                     </button>
@@ -29,10 +21,6 @@
         </div>
     </div>
 </div>
-<!-- Modal Search End -->
-
-
-<!-- Single Page Header start -->
 <div class="container-fluid page-header py-5"
     style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{ asset('shop/img/cart-bg.jpg') }}'); background-size: cover;">
     <h1 class="text-center text-white display-6 fw-bold">Shopping Cart</h1>
@@ -41,6 +29,7 @@
         <li class="breadcrumb-item active text-white">Cart</li>
     </ol>
 </div>
+
 <div class="container-fluid py-5 bg-light">
     <div class="container py-5">
         <div class="row g-5">
@@ -103,7 +92,6 @@
                                         </td>
                                     </tr>
                                 @endif
-
                             @empty
                                 <tr>
                                     <td colspan="6" class="text-center py-5">
@@ -147,10 +135,15 @@
                             <h4 class="mb-0 fw-bold text-primary">Rp
                                 {{ number_format($subtotal + 2000, 0, ',', '.') }}</h4>
                         </div>
-                        <button class="btn btn-primary w-100 rounded-pill py-3 fw-bold text-uppercase shadow-sm"
-                            type="button" {{ count($carts) == 0 ? 'disabled' : '' }}>
-                            Checkout Sekarang
-                        </button>
+
+                        <form action="{{ route('checkout.process') }}" method="POST">
+                            @csrf
+                            <button
+                                class="btn btn-primary w-100 rounded-pill py-3 fw-bold text-uppercase shadow-sm text-white"
+                                type="submit" {{ count($carts) == 0 ? 'disabled' : '' }}>
+                                Checkout Sekarang
+                            </button>
+                        </form>
 
                         <div class="mt-4 text-center">
                             <small class="text-muted"><i class="fa fa-shield-alt me-1"></i> Transaksi Aman &
@@ -166,8 +159,8 @@
         </div>
     </div>
 </div>
+
 <style>
-    /* Tambahkan di CSS kamu */
     .dashed {
         border-top: 1px dashed #dee2e6;
         opacity: 1;
@@ -177,14 +170,23 @@
         border-radius: 1.25rem !important;
     }
 
-    .btn-primary {
-        background-color: #81c408;
-        /* Sesuaikan dengan warna primer Tobukel kamu */
-        border-color: #81c408;
+    .btn-primary,
+    .btn.btn-primary,
+    button.btn-primary {
+        background-color: #8b5e3c !important;
+        border-color: #8b5e3c !important;
+        color: #fff !important;
+    }
+
+    .btn-primary:hover,
+    .btn.btn-primary:hover,
+    button.btn-primary:hover {
+        background-color: #6f4a30 !important;
+        border-color: #6f4a30 !important;
     }
 
     .text-primary {
-        color: #81c408 !important;
+        color: #8b5e3c !important;
     }
 
     .page-header {
@@ -193,14 +195,9 @@
         background-repeat: no-repeat;
     }
 </style>
-<!-- Single Page Header End -->
-
-<!-- Back to Top -->
 <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
         class="fa fa-arrow-up"></i></a>
 
-
-<!-- JavaScript Libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
@@ -208,5 +205,4 @@
 <script src="lib/lightbox/js/lightbox.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-<!-- Template Javascript -->
 <script src="js/main.js"></script>
