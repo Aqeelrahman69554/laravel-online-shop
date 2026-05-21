@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('totalQty', $count);
         });
 
-        // Berfungsi untuk menjalankan css bootstrap ke dalam ngrok
+        // Berfungsi untuk menjalankan css bootstrap ke dalam server ngrok
         Paginator::useBootstrapFive(); // Tambahkan ini
         // Tambahkan baris ini untuk memaksa HTTPS jika di production/ngrok
         if (config('app.env') !== 'local' || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
